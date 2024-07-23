@@ -95,7 +95,7 @@
   <dl>
     <dt>Defined in:</dt>
     <dd>lib/red_black_tree/node.rb<span class="defines">,<br />
-  lib/red_black_tree/node/implementation.rb,<br /> lib/red_black_tree/node/left_right_element_referencers.rb</span>
+  lib/red_black_tree/node/left_right_element_referencers.rb</span>
 </dd>
   </dl>
   
@@ -203,26 +203,7 @@
     </ul>
   
 
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <div id="constructor_details" class="method_details_list">
+<div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
     <div class="method_details first">
@@ -284,6 +265,7 @@
       <pre class="lines">
 
 
+13
 14
 15
 16
@@ -291,11 +273,10 @@
 18
 19
 20
-21
-22</pre>
+21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red_black_tree/node.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'lib/red_black_tree/node.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span> <span class='id identifier rubyid_data'>data</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>data cannot be nil</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='lparen'>(</span><span class='id identifier rubyid_instance_of?'>instance_of?</span> <span class='const'><span class='object_link'><a href="../RedBlackTree.html" title="RedBlackTree (class)">RedBlackTree</a></span></span><span class='op'>::</span><span class='const'>LeafNode</span><span class='rparen'>)</span>
@@ -362,12 +343,12 @@
       <pre class="lines">
 
 
+9
 10
-11
-12</pre>
+11</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red_black_tree/node.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'lib/red_black_tree/node.rb', line 9</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_data'>data</span>
   <span class='ivar'>@data</span>
@@ -423,12 +404,12 @@
       <pre class="lines">
 
 
+26
 27
-28
-29</pre>
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red_black_tree/node.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'lib/red_black_tree/node.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='op'>&lt;=&gt;</span> <span class='id identifier rubyid_other'>other</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>NotImplementedError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Comparable operator &lt;=&gt; must be implemented in subclass</span><span class='tstring_end'>&quot;</span></span>
@@ -443,7 +424,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jul 23 05:34:28 2024 by
+  Generated on Tue Jul 23 05:39:17 2024 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.36 (ruby-3.3.4).
 </div>
