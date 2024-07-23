@@ -95,7 +95,7 @@
   <dl>
     <dt>Defined in:</dt>
     <dd>lib/red-black-tree.rb<span class="defines">,<br />
-  lib/red_black_tree/node.rb,<br /> lib/red_black_tree/utils.rb,<br /> lib/red_black_tree/version.rb,<br /> lib/red_black_tree/node/implementation.rb,<br /> lib/red_black_tree/node/left_right_element_referencers.rb</span>
+  lib/red_black_tree/node.rb,<br /> lib/red_black_tree/utils.rb,<br /> lib/red_black_tree/version.rb,<br /> lib/red_black_tree/node/leaf_node.rb,<br /> lib/red_black_tree/node/implementation.rb,<br /> lib/red_black_tree/node/left_right_element_referencers.rb</span>
 </dd>
   </dl>
   
@@ -362,13 +362,13 @@
       <pre class="lines">
 
 
-16
 17
 18
-19</pre>
+19
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 17</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
   <span class='ivar'>@size</span> <span class='op'>=</span> <span class='int'>0</span>
@@ -430,12 +430,12 @@
       <pre class="lines">
 
 
-14
 15
-16</pre>
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_size'>size</span>
   <span class='ivar'>@size</span>
@@ -520,7 +520,6 @@
       <pre class="lines">
 
 
-49
 50
 51
 52
@@ -533,10 +532,11 @@
 59
 60
 61
-62</pre>
+62
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 50</span>
 
 <span class='kw'>def</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_node'>node</span>
   <span class='id identifier rubyid_parent'>parent</span> <span class='op'>=</span> <span class='ivar'>@root</span>
@@ -596,12 +596,12 @@
       <pre class="lines">
 
 
-31
 32
-33</pre>
+33
+34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 32</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_any?'>any?</span>
   <span class='op'>!</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -675,7 +675,6 @@
       <pre class="lines">
 
 
-129
 130
 131
 132
@@ -739,10 +738,11 @@
 190
 191
 192
-193</pre>
+193
+194</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 129</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 130</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete!'>delete!</span> <span class='id identifier rubyid_node'>node</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_children_are_valid?'>children_are_valid?</span>
@@ -758,7 +758,7 @@
     <span class='kw'>if</span> <span class='ivar'>@root</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@root</span> <span class='op'>==</span> <span class='id identifier rubyid_node'>node</span>
       <span class='ivar'>@root</span> <span class='op'>=</span> <span class='kw'>nil</span>
     <span class='kw'>elsif</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_red?'>red?</span>
-      <span class='id identifier rubyid_leaf'>leaf</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>nil</span>
+      <span class='id identifier rubyid_leaf'>leaf</span> <span class='op'>=</span> <span class='const'>LeafNode</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
       <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_swap_parent_with!'>swap_parent_with!</span> <span class='id identifier rubyid_leaf'>leaf</span>
     <span class='kw'>else</span>
       <span class='id identifier rubyid_direction'>direction</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_position'>position</span>
@@ -797,7 +797,7 @@
         <span class='kw'>end</span>
       <span class='kw'>end</span>
 
-      <span class='id identifier rubyid_leaf'>leaf</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>nil</span>
+      <span class='id identifier rubyid_leaf'>leaf</span> <span class='op'>=</span> <span class='const'>LeafNode</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
       <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_swap_parent_with!'>swap_parent_with!</span> <span class='id identifier rubyid_leaf'>leaf</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
@@ -853,12 +853,12 @@
       <pre class="lines">
 
 
-24
 25
-26</pre>
+26
+27</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 25</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_empty?'>empty?</span>
   <span class='ivar'>@size</span> <span class='op'>==</span> <span class='int'>0</span>
@@ -912,14 +912,14 @@
       <pre class="lines">
 
 
-38
 39
 40
 41
-42</pre>
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 38</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 39</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_shift'>shift</span>
   <span class='id identifier rubyid_node'>node</span> <span class='op'>=</span> <span class='ivar'>@left_most_node</span>
@@ -936,7 +936,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jul 23 05:05:12 2024 by
+  Generated on Tue Jul 23 05:34:28 2024 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.36 (ruby-3.3.4).
 </div>
