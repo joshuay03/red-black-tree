@@ -791,7 +791,7 @@
     <span class='id identifier rubyid_valid_child'>valid_child</span><span class='period'>.</span><span class='id identifier rubyid_black!'>black!</span>
     <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_swap_parent_with!'>swap_parent_with!</span> <span class='id identifier rubyid_valid_child'>valid_child</span>
   <span class='kw'>elsif</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_children_are_leaves?'>children_are_leaves?</span>
-    <span class='kw'>if</span> <span class='ivar'>@root</span> <span class='op'>==</span> <span class='id identifier rubyid_node'>node</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span> <span class='op'>==</span> <span class='ivar'>@root</span>
       <span class='ivar'>@root</span> <span class='op'>=</span> <span class='kw'>nil</span>
     <span class='kw'>elsif</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_red?'>red?</span>
       <span class='id identifier rubyid_leaf'>leaf</span> <span class='op'>=</span> <span class='const'>LeafNode</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -972,7 +972,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jul 23 06:31:58 2024 by
+  Generated on Tue Jul 23 06:32:11 2024 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.36 (ruby-3.3.4).
 </div>
