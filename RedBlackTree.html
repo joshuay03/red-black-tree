@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: RedBlackTree
+  
+    &mdash; Documentation by YARD 0.9.36
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "RedBlackTree";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (R)</a> &raquo;
+    
+    
+    <span class="title">RedBlackTree</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: RedBlackTree
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">RedBlackTree</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/red-black-tree.rb<span class="defines">,<br />
+  lib/red_black_tree/node.rb,<br /> lib/red_black_tree/utils.rb,<br /> lib/red_black_tree/version.rb,<br /> lib/red_black_tree/node/implementation.rb,<br /> lib/red_black_tree/node/left_right_element_referencers.rb</span>
+</dd>
+  </dl>
+  
+</div>
+
+<h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="RedBlackTree/Node.html" title="RedBlackTree::Node (class)">Node</a></span>
+    
+  
+</p>
+
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="VERSION-constant" class="">VERSION =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0.1.0</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#size-instance_method" title="#size (instance method)">#<strong>size</strong>  &#x21d2; Integer </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The number of valid/non-leaf nodes.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#<<-instance_method" title="#&lt;&lt; (instance method)">#<strong>&lt;&lt;</strong>(node)  &#x21d2; RedBlackTree </a>
+    
+
+    
+      (also: #add!)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Traverses the tree, comparing existing nodes to the node to be added, and inserts the node with the appropriate parent and direction.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#any%3F-instance_method" title="#any? (instance method)">#<strong>any?</strong>  &#x21d2; true, false </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns true if there are any valid/non-leaf nodes, and false if there are none.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#delete!-instance_method" title="#delete! (instance method)">#<strong>delete!</strong>(node)  &#x21d2; RedBlackTree </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Removes the given node from the tree.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#empty%3F-instance_method" title="#empty? (instance method)">#<strong>empty?</strong>  &#x21d2; true, false </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns true if there are no valid/non-leaf nodes, and false if there are.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>  &#x21d2; RedBlackTree </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of RedBlackTree.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#shift-instance_method" title="#shift (instance method)">#<strong>shift</strong>  &#x21d2; RedBlackTree::Node<sup>?</sup> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Removes the left most node i.e.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>  &#x21d2; <tt><span class='object_link'><a href="" title="RedBlackTree (class)">RedBlackTree</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of RedBlackTree.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+16
+17
+18
+19</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 16</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
+  <span class='ivar'>@size</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='ivar'>@left_most_node</span> <span class='op'>=</span> <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="size-instance_method">
+  
+    #<strong>size</strong>  &#x21d2; <tt>Integer</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns The number of valid/non-leaf nodes.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The number of valid/non-leaf nodes</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+14
+15
+16</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 14</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_size'>size</span>
+  <span class='ivar'>@size</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="<<-instance_method">
+  
+    #<strong>&lt;&lt;</strong>(node)  &#x21d2; <tt><span class='object_link'><a href="" title="RedBlackTree (class)">RedBlackTree</a></span></tt> 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='add!-instance_method'>add!</span></span>
+    </span>
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Traverses the tree, comparing existing nodes to the node to be added, and inserts the node with the appropriate parent and direction.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>node</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="RedBlackTree/Node.html" title="RedBlackTree::Node (class)">RedBlackTree::Node</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The node to be added</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="RedBlackTree (class)">RedBlackTree</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>self</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 49</span>
+
+<span class='kw'>def</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_node'>node</span>
+  <span class='id identifier rubyid_parent'>parent</span> <span class='op'>=</span> <span class='ivar'>@root</span>
+  <span class='id identifier rubyid_direction'>direction</span> <span class='op'>=</span> <span class='kw'>nil</span>
+
+  <span class='kw'>while</span> <span class='id identifier rubyid_parent'>parent</span>
+
+    <span class='id identifier rubyid_direction'>direction</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span> <span class='op'>&lt;=</span> <span class='id identifier rubyid_parent'>parent</span> <span class='op'>?</span> <span class='const'><span class='object_link'><a href="RedBlackTree/Node.html" title="RedBlackTree::Node (class)">Node</a></span></span><span class='op'>::</span><span class='const'>LEFT</span> <span class='op'>:</span> <span class='const'><span class='object_link'><a href="RedBlackTree/Node.html" title="RedBlackTree::Node (class)">Node</a></span></span><span class='op'>::</span><span class='const'>RIGHT</span>
+    <span class='kw'>break</span> <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_child'>child</span> <span class='op'>=</span> <span class='id identifier rubyid_parent'>parent</span><span class='lbracket'>[</span><span class='id identifier rubyid_direction'>direction</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_leaf?'>leaf?</span>
+
+    <span class='id identifier rubyid_parent'>parent</span> <span class='op'>=</span> <span class='id identifier rubyid_child'>child</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_insert!'>insert!</span> <span class='id identifier rubyid_node'>node</span><span class='comma'>,</span> <span class='id identifier rubyid_parent'>parent</span><span class='comma'>,</span> <span class='id identifier rubyid_direction'>direction</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="any?-instance_method">
+  
+    #<strong>any?</strong>  &#x21d2; <tt>true</tt>, <tt>false</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns true if there are any valid/non-leaf nodes, and false if there are none.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+31
+32
+33</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 31</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_any?'>any?</span>
+  <span class='op'>!</span><span class='id identifier rubyid_empty?'>empty?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="delete!-instance_method">
+  
+    #<strong>delete!</strong>(node)  &#x21d2; <tt><span class='object_link'><a href="" title="RedBlackTree (class)">RedBlackTree</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Removes the given node from the tree.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>node</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="RedBlackTree/Node.html" title="RedBlackTree::Node (class)">RedBlackTree::Node</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The node to be removed</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="RedBlackTree (class)">RedBlackTree</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>self</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 129</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_delete!'>delete!</span> <span class='id identifier rubyid_node'>node</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_children_are_valid?'>children_are_valid?</span>
+    <span class='id identifier rubyid_successor'>successor</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_right'>right</span>
+    <span class='id identifier rubyid_successor'>successor</span> <span class='op'>=</span> <span class='id identifier rubyid_successor'>successor</span><span class='period'>.</span><span class='id identifier rubyid_left'>left</span> <span class='kw'>until</span> <span class='id identifier rubyid_successor'>successor</span><span class='period'>.</span><span class='id identifier rubyid_left'>left</span><span class='period'>.</span><span class='id identifier rubyid_leaf?'>leaf?</span>
+    <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_swap_data_with!'>swap_data_with!</span> <span class='id identifier rubyid_successor'>successor</span>
+    <span class='id identifier rubyid_delete'>delete</span> <span class='id identifier rubyid_successor'>successor</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_single_child_is_valid?'>single_child_is_valid?</span>
+    <span class='id identifier rubyid_valid_child'>valid_child</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_children'>children</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:valid?</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_valid_child'>valid_child</span><span class='period'>.</span><span class='id identifier rubyid_black!'>black!</span>
+    <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_swap_parent_with!'>swap_parent_with!</span> <span class='id identifier rubyid_valid_child'>valid_child</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_children_are_leaves?'>children_are_leaves?</span>
+    <span class='kw'>if</span> <span class='ivar'>@root</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@root</span> <span class='op'>==</span> <span class='id identifier rubyid_node'>node</span>
+      <span class='ivar'>@root</span> <span class='op'>=</span> <span class='kw'>nil</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_red?'>red?</span>
+      <span class='id identifier rubyid_leaf'>leaf</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>nil</span>
+      <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_swap_parent_with!'>swap_parent_with!</span> <span class='id identifier rubyid_leaf'>leaf</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_direction'>direction</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_position'>position</span>
+      <span class='id identifier rubyid_opp_direction'>opp_direction</span> <span class='op'>=</span> <span class='id identifier rubyid_opposite_direction'>opposite_direction</span> <span class='id identifier rubyid_direction'>direction</span>
+
+      <span class='id identifier rubyid_loop'>loop</span> <span class='kw'>do</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_sibling'>sibling</span><span class='period'>.</span><span class='id identifier rubyid_red?'>red?</span>
+          <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_red!'>red!</span>
+          <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_sibling'>sibling</span><span class='period'>.</span><span class='id identifier rubyid_black!'>black!</span>
+          <span class='id identifier rubyid_rotate_sub_tree!'>rotate_sub_tree!</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span><span class='comma'>,</span> <span class='id identifier rubyid_direction'>direction</span>
+        <span class='kw'>end</span>
+
+        <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_distant_nephew'>distant_nephew</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_distant_nephew'>distant_nephew</span><span class='period'>.</span><span class='id identifier rubyid_red?'>red?</span>
+          <span class='kw'>case</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_colour'>colour</span>
+          <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="RedBlackTree/Node.html" title="RedBlackTree::Node (class)">Node</a></span></span><span class='op'>::</span><span class='const'>RED</span> <span class='kw'>then</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_sibling'>sibling</span><span class='period'>.</span><span class='id identifier rubyid_red!'>red!</span>
+          <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="RedBlackTree/Node.html" title="RedBlackTree::Node (class)">Node</a></span></span><span class='op'>::</span><span class='const'>BLACK</span> <span class='kw'>then</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_sibling'>sibling</span><span class='period'>.</span><span class='id identifier rubyid_black!'>black!</span>
+          <span class='kw'>end</span>
+          <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_black!'>black!</span>
+          <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_distant_nephew'>distant_nephew</span><span class='period'>.</span><span class='id identifier rubyid_black!'>black!</span>
+          <span class='id identifier rubyid_rotate_sub_tree!'>rotate_sub_tree!</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span><span class='comma'>,</span> <span class='id identifier rubyid_direction'>direction</span>
+
+          <span class='kw'>break</span>
+        <span class='kw'>end</span>
+
+        <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_close_nephew'>close_nephew</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_close_nephew'>close_nephew</span><span class='period'>.</span><span class='id identifier rubyid_red?'>red?</span>
+          <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_sibling'>sibling</span><span class='period'>.</span><span class='id identifier rubyid_red!'>red!</span>
+          <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_close_nephew'>close_nephew</span><span class='period'>.</span><span class='id identifier rubyid_black!'>black!</span>
+          <span class='id identifier rubyid_rotate_sub_tree!'>rotate_sub_tree!</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_sibling'>sibling</span><span class='comma'>,</span> <span class='id identifier rubyid_opp_direction'>opp_direction</span>
+        <span class='kw'>end</span>
+
+        <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_red?'>red?</span>
+          <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_sibling'>sibling</span><span class='period'>.</span><span class='id identifier rubyid_red!'>red!</span>
+          <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_black!'>black!</span>
+
+          <span class='kw'>break</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+
+      <span class='id identifier rubyid_leaf'>leaf</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='kw'>nil</span>
+      <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_swap_parent_with!'>swap_parent_with!</span> <span class='id identifier rubyid_leaf'>leaf</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_validate_free!'>validate_free!</span>
+
+  <span class='ivar'>@size</span> <span class='op'>-=</span> <span class='int'>1</span>
+  <span class='id identifier rubyid_update_left_most_node!'>update_left_most_node!</span>
+
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="empty?-instance_method">
+  
+    #<strong>empty?</strong>  &#x21d2; <tt>true</tt>, <tt>false</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns true if there are no valid/non-leaf nodes, and false if there are.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+24
+25
+26</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 24</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_empty?'>empty?</span>
+  <span class='ivar'>@size</span> <span class='op'>==</span> <span class='int'>0</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="shift-instance_method">
+  
+    #<strong>shift</strong>  &#x21d2; <tt><span class='object_link'><a href="RedBlackTree/Node.html" title="RedBlackTree::Node (class)">RedBlackTree::Node</a></span></tt><sup>?</sup> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Removes the left most node i.e. the node with the lowest data value from the tree.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="RedBlackTree/Node.html" title="RedBlackTree::Node (class)">RedBlackTree::Node</a></span></tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The removed node</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+38
+39
+40
+41
+42</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 38</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_shift'>shift</span>
+  <span class='id identifier rubyid_node'>node</span> <span class='op'>=</span> <span class='ivar'>@left_most_node</span>
+  <span class='id identifier rubyid_delete!'>delete!</span> <span class='id identifier rubyid_node'>node</span> <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span>
+  <span class='id identifier rubyid_node'>node</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Tue Jul 23 04:57:04 2024 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.36 (ruby-3.3.4).
+</div>
+
+    </div>
+  </body>
+</html>
