@@ -703,7 +703,6 @@
       <pre class="lines">
 
 
-135
 136
 137
 138
@@ -779,7 +778,7 @@
 208</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 135</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 136</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete!'>delete!</span> <span class='id identifier rubyid_node'>node</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cannot delete leaf node</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_instance_of?'>instance_of?</span> <span class='const'>LeafNode</span>
@@ -791,14 +790,13 @@
 
     <span class='kw'>return</span> <span class='id identifier rubyid_delete!'>delete!</span> <span class='id identifier rubyid_successor'>successor</span>
   <span class='kw'>elsif</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_single_child_is_valid?'>single_child_is_valid?</span>
+    <span class='id identifier rubyid_is_root'>is_root</span> <span class='op'>=</span> <span class='id identifier rubyid_is_root?'>is_root?</span> <span class='id identifier rubyid_node'>node</span>
+
     <span class='id identifier rubyid_valid_child'>valid_child</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_children'>children</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:valid?</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_swap_colour_with!'>swap_colour_with!</span> <span class='id identifier rubyid_valid_child'>valid_child</span>
     <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_swap_position_with!'>swap_position_with!</span> <span class='id identifier rubyid_valid_child'>valid_child</span>
-    <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-      <span class='ivar'>@root</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span>
-    <span class='kw'>elsif</span> <span class='id identifier rubyid_valid_child'>valid_child</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-      <span class='ivar'>@root</span> <span class='op'>=</span> <span class='id identifier rubyid_valid_child'>valid_child</span>
-    <span class='kw'>end</span>
+    <span class='ivar'>@root</span> <span class='op'>=</span> <span class='id identifier rubyid_valid_child'>valid_child</span> <span class='kw'>if</span> <span class='id identifier rubyid_is_root'>is_root</span>
+
     <span class='kw'>return</span> <span class='id identifier rubyid_delete!'>delete!</span> <span class='id identifier rubyid_node'>node</span>
   <span class='kw'>elsif</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_children_are_leaves?'>children_are_leaves?</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_is_root?'>is_root?</span> <span class='id identifier rubyid_node'>node</span>
@@ -850,7 +848,7 @@
 
   <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_validate_free!'>validate_free!</span>
 
-  <span class='ivar'>@size</span> <span class='op'>-=</span> <span class='int'>1</span>
+  <span class='id identifier rubyid_decrement_size!'>decrement_size!</span>
   <span class='id identifier rubyid_update_left_most_node!'>update_left_most_node!</span>
 
   <span class='kw'>self</span>
@@ -982,7 +980,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Jul 30 12:09:45 2024 by
+  Generated on Thu Aug  1 03:20:53 2024 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.36 (ruby-3.3.4).
 </div>
