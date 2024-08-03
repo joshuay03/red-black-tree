@@ -559,7 +559,7 @@
   <span class='id identifier rubyid_direction'>direction</span> <span class='op'>=</span> <span class='kw'>nil</span>
 
   <span class='kw'>while</span> <span class='id identifier rubyid_parent'>parent</span>
-    <span class='id identifier rubyid_direction'>direction</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_parent'>parent</span> <span class='op'>?</span> <span class='const'><span class='object_link'><a href="RedBlackTree/Node.html" title="RedBlackTree::Node (class)">Node</a></span></span><span class='op'>::</span><span class='const'>LEFT</span> <span class='op'>:</span> <span class='const'><span class='object_link'><a href="RedBlackTree/Node.html" title="RedBlackTree::Node (class)">Node</a></span></span><span class='op'>::</span><span class='const'>RIGHT</span>
+    <span class='id identifier rubyid_direction'>direction</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span> <span class='op'>&gt;=</span> <span class='id identifier rubyid_parent'>parent</span> <span class='op'>?</span> <span class='const'><span class='object_link'><a href="RedBlackTree/Node.html" title="RedBlackTree::Node (class)">Node</a></span></span><span class='op'>::</span><span class='const'>RIGHT</span> <span class='op'>:</span> <span class='const'><span class='object_link'><a href="RedBlackTree/Node.html" title="RedBlackTree::Node (class)">Node</a></span></span><span class='op'>::</span><span class='const'>LEFT</span>
     <span class='kw'>break</span> <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_child'>child</span> <span class='op'>=</span> <span class='id identifier rubyid_parent'>parent</span><span class='lbracket'>[</span><span class='id identifier rubyid_direction'>direction</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_leaf?'>leaf?</span>
 
     <span class='id identifier rubyid_parent'>parent</span> <span class='op'>=</span> <span class='id identifier rubyid_child'>child</span>
@@ -982,7 +982,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sat Aug  3 18:05:57 2024 by
+  Generated on Sat Aug  3 18:06:17 2024 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.36 (ruby-3.3.4).
 </div>
