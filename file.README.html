@@ -76,7 +76,9 @@
 
 <h2 id="label-Usage">Usage</h2>
 
-<pre class="code ruby"><code class="ruby">class WorkNode &lt; RedBlackTree::Node
+<pre class="code ruby"><code class="ruby">Work = Struct.new :min_latency, keyword_init: true
+
+class WorkNode &lt; RedBlackTree::Node
   def &lt;=&gt; other
     if other.instance_of? RedBlackTree::LeafNode
       1
@@ -88,14 +90,14 @@ end
 
 tree = RedBlackTree.new
 
-tree &lt;&lt; WorkNode.new 1.2
-tree &lt;&lt; WorkNode.new 0.8
-tree &lt;&lt; WorkNode.new 0.8
-tree &lt;&lt; WorkNode.new 0.4
+tree &lt;&lt; WorkNode.new(Work.new min_latency: 1.2)
+tree &lt;&lt; WorkNode.new Work.new min_latency: 0.8
+tree &lt;&lt; WorkNode.new Work.new min_latency: 0.8
+tree &lt;&lt; WorkNode.new Work.new min_latency: 0.4
 
 until tree.empty?
   work = tree.shift # 0.4, 0.8, 0.8, 1.2
-  work.process
+  # process work
 end
 </code></pre>
 
@@ -117,7 +119,7 @@ end
 </div></div>
 
       <div id="footer">
-  Generated on Sat Aug  3 17:44:02 2024 by
+  Generated on Sat Aug  3 17:50:08 2024 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.36 (ruby-3.3.4).
 </div>
