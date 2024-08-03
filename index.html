@@ -76,7 +76,8 @@
 
 <h2 id="label-Usage">Usage</h2>
 
-<pre class="code ruby"><code class="ruby"><span class='const'>Work</span> <span class='op'>=</span> <span class='const'>Struct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='symbol'>:min_latency</span><span class='comma'>,</span> <span class='label'>keyword_init:</span> <span class='kw'>true</span>
+<pre class="code ruby"><code class="ruby"><span class='kw'>begin</span>
+<span class='const'>Work</span> <span class='op'>=</span> <span class='const'>Struct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='symbol'>:min_latency</span><span class='comma'>,</span> <span class='label'>keyword_init:</span> <span class='kw'>true</span>
 
 <span class='kw'>class</span> <span class='const'>WorkNode</span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="RedBlackTree.html" title="RedBlackTree (class)">RedBlackTree</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="RedBlackTree/Node.html" title="RedBlackTree::Node (class)">Node</a></span></span>
   <span class='kw'>def</span> <span class='op'>&lt;=&gt;</span> <span class='id identifier rubyid_other'>other</span>
@@ -94,7 +95,7 @@
 <span class='id identifier rubyid_tree'>tree</span> <span class='op'>&lt;&lt;</span> <span class='const'>WorkNode</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Work</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='label'>min_latency:</span> <span class='float'>0.8</span><span class='rparen'>)</span>
 <span class='id identifier rubyid_tree'>tree</span> <span class='op'>&lt;&lt;</span> <span class='const'>WorkNode</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Work</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='label'>min_latency:</span> <span class='float'>0.8</span><span class='rparen'>)</span>
 <span class='id identifier rubyid_tree'>tree</span> <span class='op'>&lt;&lt;</span> <span class='const'>WorkNode</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Work</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='label'>min_latency:</span> <span class='float'>0.4</span><span class='rparen'>)</span>
-
+<span class='kw'>end</span>
 <span class='kw'>until</span> <span class='id identifier rubyid_tree'>tree</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
   <span class='id identifier rubyid_work'>work</span> <span class='op'>=</span> <span class='id identifier rubyid_tree'>tree</span><span class='period'>.</span><span class='id identifier rubyid_shift'>shift</span> <span class='comment'># 0.4, 0.8, 0.8, 1.2
 </span>  <span class='comment'># process work
@@ -119,7 +120,7 @@
 </div></div>
 
       <div id="footer">
-  Generated on Sat Aug  3 18:06:16 2024 by
+  Generated on Sat Aug  3 18:14:08 2024 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.36 (ruby-3.3.4).
 </div>
