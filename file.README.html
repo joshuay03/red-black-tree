@@ -60,13 +60,9 @@
       <div id="content"><div id='filecontents'>
 <h1 id="label-RedBlackTree">RedBlackTree</h1>
 
-<p>TODO: Delete this and the text below, and describe your gem</p>
-
-<p>Welcome to your new gem! In this directory, you’ll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file <code>lib/red-black-tree</code>. To experiment with that code, run <code>bin/console</code> for an interactive prompt.</p>
+<p><a href="https://en.wikipedia.org/wiki/Red%E2%80%93black_tree">Red-black tree</a> data structure for Ruby.</p>
 
 <h2 id="label-Installation">Installation</h2>
-
-<p>TODO: Replace <code>UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG</code> with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don’t plan to release to RubyGems.org.</p>
 
 <p>Install the gem and add to the application’s Gemfile by executing:</p>
 
@@ -80,17 +76,36 @@
 
 <h2 id="label-Usage">Usage</h2>
 
-<p>TODO: Write usage instructions here</p>
+<pre class="code ruby"><code class="ruby">class WorkNode &lt; RedBlackTree::Node
+  def &lt;=&gt; other
+    if other.instance_of? RedBlackTree::LeafNode
+      1
+    else
+      self.data.min_latency &lt;=&gt; other.data.min_latency
+    end
+  end
+end
+
+tree = RedBlackTree.new
+
+tree &lt;&lt; WorkNode.new 1.2
+tree &lt;&lt; WorkNode.new 0.8
+tree &lt;&lt; WorkNode.new 0.8
+tree &lt;&lt; WorkNode.new 0.4
+
+until tree.empty?
+  work = tree.shift # 0.4, 0.8, 0.8, 1.2
+  work.process
+end
+</code></pre>
 
 <h2 id="label-Development">Development</h2>
 
-<p>After checking out the repo, run <code>bin/setup</code> to install dependencies. Then, run <code>rake test</code> to run the tests. You can also run <code>bin/console</code> for an interactive prompt that will allow you to experiment.</p>
-
-<p>To install this gem onto your local machine, run <code>bundle exec rake install</code>. To release a new version, update the version number in <code>version.rb</code>, and then run <code>bundle exec rake release</code>, which will create a git tag for the version, push git commits and the created tag, and push the <code>.gem</code> file to <a href="https://rubygems.org">rubygems.org</a>.</p>
+<p>After checking out the repo, run <code>bin/setup</code> to install dependencies. Then, run <code>bundle exec rake test</code> to run the tests. You can also run <code>bin/console</code> for an interactive prompt that will allow you to experiment.</p>
 
 <h2 id="label-Contributing">Contributing</h2>
 
-<p>Bug reports and pull requests are welcome on GitHub at <a href="https://github.com/[USERNAME]/red-black-tree">github.com/[USERNAME]/red-black-tree</a>. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the of conduct[https://github.com/[USERNAME]/red-black-tree/blob/main/CODE_OF_CONDUCT.md].</p>
+<p>Bug reports and pull requests are welcome on GitHub at <a href="https://github.com/joshuay03/red-black-tree">github.com/joshuay03/red-black-tree</a>.</p>
 
 <h2 id="label-License">License</h2>
 
@@ -98,11 +113,11 @@
 
 <h2 id="label-Code+of+Conduct">Code of Conduct</h2>
 
-<p>Everyone interacting in the RedBlackTree project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the of conduct[https://github.com/[USERNAME]/red-black-tree/blob/main/CODE_OF_CONDUCT.md].</p>
+<p>Everyone interacting in the RedBlackTree project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the <a href="https://github.com/joshuay03/red-black-tree/blob/main/CODE_OF_CONDUCT.md">code of conduct</a>.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Sat Aug  3 17:27:14 2024 by
+  Generated on Sat Aug  3 17:44:02 2024 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.36 (ruby-3.3.4).
 </div>
