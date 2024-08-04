@@ -17,6 +17,7 @@ class RedBlackTree
   # @private
   # @return [RedBlackTree::Node, nil] the left most node
   attr_reader :left_most_node
+  alias_method :min, :left_most_node
 
   def initialize
     @size = 0
