@@ -229,6 +229,13 @@ class RedBlackTree
     _search data, @root
   end
 
+  # Returns true if there is a node which matches the given data/value, and false if there is not.
+  #
+  # @return [true, false]
+  def include? data
+    !!search(data)
+  end
+
   private
 
   # Rotates a (sub-)tree starting from the given node in the given direction.

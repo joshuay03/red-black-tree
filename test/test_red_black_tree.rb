@@ -709,6 +709,38 @@ class TestRedBlackTree < Minitest::Test
     end
   end
 
+  class TestInclude < Minitest::Test
+    def test_new_tree_include
+      tree = RedBlackTree.new
+      refute tree.include? 10
+    end
+
+    def test_single_node_tree_include
+      tree = RedBlackTree.new
+      node_10 = RedBlackTree::IntegerNode.new 10
+      tree << node_10
+      assert tree.include? 10
+    end
+
+    def test_sub_tree_include
+      tree = RedBlackTree.new
+      node_10 = RedBlackTree::IntegerNode.new 10
+      tree << node_10
+      node_5 = RedBlackTree::IntegerNode.new 5
+      tree << node_5
+      node_15 = RedBlackTree::IntegerNode.new 15
+      tree << node_15
+      node_1 = RedBlackTree::IntegerNode.new 1
+      tree << node_1
+      node_4 = RedBlackTree::IntegerNode.new 4
+      tree << node_4
+      assert tree.include? 5
+      assert tree.include? 15
+      tree.delete! node_5
+      refute tree.include? 5
+    end
+  end
+
   class TestShift < Minitest::Test
     def test_new_tree_shift
       tree = RedBlackTree.new
