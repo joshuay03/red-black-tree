@@ -270,7 +270,7 @@ class RedBlackTree
   end
 
   def is_root? node
-    node.object_id == @root.object_id
+    node && @root && node.object_id == @root.object_id
   end
 
   def increment_size!
