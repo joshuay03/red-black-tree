@@ -1,6 +1,7 @@
 ## [Unreleased]
 
 - Alias `RedBlackTree#left_most_node` as `RedBlackTree#min`
+- Add `RedBlackTree#search`
 
 ## [0.1.1] - 2024-08-04
 

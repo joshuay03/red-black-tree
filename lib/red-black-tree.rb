@@ -219,11 +219,17 @@ class RedBlackTree
     self
   end
 
-  private
+  # Searches for a node which matches the given data/value.
+  #
+  # @param data [any] the data to search for
+  # @return [RedBlackTree::Node, nil] the matching node
+  def search data
+    raise ArgumentError, "data must be provided for search" unless data
 
-  def is_root? node
-    node.object_id == @root.object_id
+    _search data, @root
   end
+
+  private
 
   # Rotates a (sub-)tree starting from the given node in the given direction.
   #
@@ -249,6 +255,22 @@ class RedBlackTree
     node.parent = opp_direction_child
 
     opp_direction_child
+  end
+
+  def _search data, current_node
+    return if current_node.nil? || current_node.leaf?
+    return current_node if data == current_node.data
+
+    mock_node = current_node.class.new data
+    if mock_node >= current_node
+      _search data, current_node.right
+    else
+      _search data, current_node.left
+    end
+  end
+
+  def is_root? node
+    node.object_id == @root.object_id
   end
 
   def increment_size!

@@ -93,7 +93,7 @@ class TestRedBlackTree < Minitest::Test
       assert_equal error.message, "Target parent direction must be provided"
     end
 
-    def test_tree_with_sub_tree_insert
+    def test_sub_tree_insert
       tree = RedBlackTree.new
       node_root = RedBlackTree::StringNode.new "root"
       tree.insert! node_root
@@ -129,7 +129,7 @@ class TestRedBlackTree < Minitest::Test
       assert_equal node_left_child, tree.left_most_node
     end
 
-    def test_tree_with_sub_tree_insert_with_existing_child
+    def test_sub_tree_insert_with_existing_child
       tree = RedBlackTree.new
       node_root = RedBlackTree::StringNode.new "root"
       tree.insert! node_root
@@ -154,13 +154,6 @@ class TestRedBlackTree < Minitest::Test
         tree.insert! node_left_child_2, root_node, RedBlackTree::Node::LEFT
       end
       assert_equal error.message, "Target parent already has left child"
-    end
-
-    # fine for these tests where just the == operator is required
-    class RedBlackTree::StringNode < RedBlackTree::Node
-      def <=> other
-        self.data <=> other.data
-      end
     end
   end
 
@@ -682,6 +675,40 @@ class TestRedBlackTree < Minitest::Test
     end
   end
 
+  class TestSearch < Minitest::Test
+    def test_new_tree_search
+      tree = RedBlackTree.new
+      result = tree.search 10
+      assert_nil result
+    end
+
+    def test_single_node_tree_search
+      tree = RedBlackTree.new
+      node_10 = RedBlackTree::IntegerNode.new 10
+      tree << node_10
+      result = tree.search 10
+      assert_equal node_10, result
+    end
+
+    def test_sub_tree_search
+      tree = RedBlackTree.new
+      node_10 = RedBlackTree::IntegerNode.new 10
+      tree << node_10
+      node_5 = RedBlackTree::IntegerNode.new 5
+      tree << node_5
+      node_15 = RedBlackTree::IntegerNode.new 15
+      tree << node_15
+      node_1 = RedBlackTree::IntegerNode.new 1
+      tree << node_1
+      node_4 = RedBlackTree::IntegerNode.new 4
+      tree << node_4
+      result = tree.search 5
+      assert_equal node_5, result
+      result = tree.search 15
+      assert_equal node_15, result
+    end
+  end
+
   class TestShift < Minitest::Test
     def test_new_tree_shift
       tree = RedBlackTree.new
@@ -705,7 +732,7 @@ class TestRedBlackTree < Minitest::Test
       assert_nil tree.left_most_node
     end
 
-    def test_tree_with_sub_tree_shift
+    def test_sub_tree_shift
       tree = RedBlackTree.new
       node_10 = RedBlackTree::IntegerNode.new 10
       tree << node_10
@@ -747,8 +774,8 @@ class TestRedBlackTree < Minitest::Test
 
     def test_single_node_tree
       tree = RedBlackTree.new
-      node = RedBlackTree::StringNode.new "root"
-      tree.insert! node
+      node_10 = RedBlackTree::IntegerNode.new 10
+      tree.insert! node_10
       assert_equal 1, tree.size
       refute tree.empty?
     end
@@ -763,8 +790,8 @@ class TestRedBlackTree < Minitest::Test
 
     def test_single_node_tree
       tree = RedBlackTree.new
-      node = RedBlackTree::StringNode.new "root"
-      tree.insert! node
+      node_10 = RedBlackTree::IntegerNode.new 10
+      tree.insert! node_10
       assert_equal 1, tree.size
       assert tree.any?
     end
@@ -773,6 +800,12 @@ class TestRedBlackTree < Minitest::Test
   class RedBlackTree::IntegerNode < RedBlackTree::Node
     def <=> other
       self.data <=> other.data
+    end
+  end
+
+  class RedBlackTree::StringNode < RedBlackTree::Node
+    def <=> other
+      self.data.length <=> other.data.length
     end
   end
 end
