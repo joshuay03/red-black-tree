@@ -29,8 +29,8 @@ end
 
 tree = RedBlackTree.new
 
-tree << WorkNode.new(Work.new min_latency: 1.2)
 tree << WorkNode.new(Work.new min_latency: 0.8)
+tree << WorkNode.new(Work.new min_latency: 1.2)
 tree << WorkNode.new(Work.new min_latency: 0.8)
 tree << WorkNode.new(Work.new min_latency: 0.4)
 
