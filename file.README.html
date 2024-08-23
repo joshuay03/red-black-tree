@@ -80,11 +80,7 @@
 
 <span class='kw'>class</span> <span class='const'>WorkNode</span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="RedBlackTree.html" title="RedBlackTree (class)">RedBlackTree</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="RedBlackTree/Node.html" title="RedBlackTree::Node (class)">Node</a></span></span>
   <span class='kw'>def</span> <span class='op'>&lt;=&gt;</span> <span class='id identifier rubyid_other'>other</span>
-    <span class='kw'>if</span> <span class='id identifier rubyid_other'>other</span><span class='period'>.</span><span class='id identifier rubyid_instance_of?'>instance_of?</span> <span class='const'><span class='object_link'><a href="RedBlackTree.html" title="RedBlackTree (class)">RedBlackTree</a></span></span><span class='op'>::</span><span class='const'>LeafNode</span>
-      <span class='int'>1</span>
-    <span class='kw'>else</span>
-      <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_min_latency'>min_latency</span> <span class='op'>&lt;=&gt;</span> <span class='id identifier rubyid_other'>other</span><span class='period'>.</span><span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_min_latency'>min_latency</span>
-    <span class='kw'>end</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_min_latency'>min_latency</span> <span class='op'>&lt;=&gt;</span> <span class='id identifier rubyid_other'>other</span><span class='period'>.</span><span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_min_latency'>min_latency</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span>
 
@@ -119,7 +115,7 @@
 </div></div>
 
       <div id="footer">
-  Generated on Wed Aug  7 15:25:09 2024 by
+  Generated on Fri Aug 23 14:38:01 2024 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.36 (ruby-3.3.4).
 </div>
