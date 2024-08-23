@@ -829,6 +829,30 @@ class TestRedBlackTree < Minitest::Test
     end
   end
 
+  class TestInheritance < Minitest::Test
+    Work = Struct.new :min_latency, keyword_init: true
+
+    class WorkNode < RedBlackTree::Node
+      def <=> other
+        self.data.min_latency <=> other.data.min_latency
+      end
+    end
+
+    def test_multiple_nodes
+      tree = RedBlackTree.new
+      tree << WorkNode.new(Work.new min_latency: 0.8)
+      tree << WorkNode.new(Work.new min_latency: 1.2)
+      tree << WorkNode.new(Work.new min_latency: 0.8)
+      tree << WorkNode.new(Work.new min_latency: 0.4)
+
+      expected = [0.4, 0.8, 0.8, 1.2]
+      until tree.empty?
+        work = tree.shift
+        assert_equal work.data.min_latency, expected.shift
+      end
+    end
+  end
+
   class RedBlackTree::IntegerNode < RedBlackTree::Node
     def <=> other
       self.data <=> other.data

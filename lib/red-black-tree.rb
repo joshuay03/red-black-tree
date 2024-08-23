@@ -42,8 +42,13 @@ class RedBlackTree
   #
   # @return [RedBlackTree::Node, nil] the removed node
   def shift
-    node = @left_most_node
-    delete! node if node
+    return unless @left_most_node
+
+    node = @left_most_node.dup
+    node.colour = node.parent = node.left = node.right = nil
+
+    delete! @left_most_node
+
     node
   end
 

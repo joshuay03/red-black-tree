@@ -19,11 +19,7 @@ Work = Struct.new :min_latency, keyword_init: true
 
 class WorkNode < RedBlackTree::Node
   def <=> other
-    if other.instance_of? RedBlackTree::LeafNode
-      1
-    else
-      self.data.min_latency <=> other.data.min_latency
-    end
+    self.data.min_latency <=> other.data.min_latency
   end
 end
 

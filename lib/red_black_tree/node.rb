@@ -1,10 +1,17 @@
 # frozen_string_literal: true
 
 require_relative "utils"
+require_relative "node/leaf_node_comparable"
 require_relative "node/left_right_element_referencers"
 
 class RedBlackTree
   class Node
+    class << self
+      def inherited subclass
+        subclass.prepend LeafNodeComparable
+      end
+    end
+
     include Comparable
 
     # @return [any] the data/value representing the node
@@ -42,8 +49,8 @@ class RedBlackTree
       RIGHT = "right"
       DIRECTIONS = [LEFT, RIGHT].freeze
 
-      attr_reader :colour
       attr_writer :data
+      attr_accessor :colour
       attr_accessor :tree, :parent
       attr_accessor :left, :right
       include LeftRightElementReferencers

@@ -1,8 +1,9 @@
 ## [Unreleased]
 
-- Alias `RedBlackTree#left_most_node` as `RedBlackTree#min`
-- Add `RedBlackTree#search`
+- Handle comparison with `RedBlackTree::LeafNode` in subclasses of `RedBlackTreeNode`
 - Add `RedBlackTree#include?`
+- Add `RedBlackTree#search`
+- Alias `RedBlackTree#left_most_node` as `RedBlackTree#min`
 
 ## [0.1.1] - 2024-08-04
 
