@@ -1,5 +1,6 @@
 ## [Unreleased]
 
+- Fix `RedBlackTree::LeafNode`s being marked red
 - Handle comparison with `RedBlackTree::LeafNode` in subclasses of `RedBlackTreeNode`
 - Add `RedBlackTree#include?`
 - Add `RedBlackTree#search`

@@ -182,9 +182,11 @@ class RedBlackTree
           end
 
           if node.distant_nephew && node.distant_nephew.valid? && node.distant_nephew.red?
-            case node.parent.colour
-            when Node::RED then node.sibling.red!
-            when Node::BLACK then node.sibling.black!
+            unless node.sibling.leaf?
+              case node.parent.colour
+              when Node::RED then node.sibling.red!
+              when Node::BLACK then node.sibling.black!
+              end
             end
             node.parent.black!
             node.distant_nephew.black!
@@ -194,7 +196,7 @@ class RedBlackTree
           end
 
           if node.close_nephew && node.close_nephew.valid? && node.close_nephew.red?
-            node.sibling.red!
+            node.sibling.red! unless node.sibling.leaf?
             node.close_nephew.black!
             rotate_sub_tree! node.sibling, opp_direction
 
@@ -202,7 +204,7 @@ class RedBlackTree
           end
 
           if node.parent.red?
-            node.sibling.red!
+            node.sibling.red! unless node.sibling.leaf?
             node.parent.black!
 
             break
