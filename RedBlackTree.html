@@ -751,6 +751,8 @@
       <pre class="lines">
 
 
+143
+144
 145
 146
 147
@@ -829,12 +831,10 @@
 220
 221
 222
-223
-224
-225</pre>
+223</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 145</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 143</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete!'>delete!</span> <span class='id identifier rubyid_node'>node</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cannot delete leaf node</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_instance_of?'>instance_of?</span> <span class='const'>LeafNode</span>
@@ -1015,12 +1015,12 @@
       <pre class="lines">
 
 
-240
-241
-242</pre>
+238
+239
+240</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 240</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 238</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_data'>data</span>
   <span class='op'>!</span><span class='op'>!</span><span class='id identifier rubyid_search'>search</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
@@ -1107,14 +1107,14 @@
       <pre class="lines">
 
 
+229
+230
 231
 232
-233
-234
-235</pre>
+233</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 231</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 229</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_search'>search</span> <span class='id identifier rubyid_data'>data</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>data must be provided for search</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_data'>data</span>
@@ -1204,7 +1204,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Aug 30 11:18:31 2024 by
+  Generated on Fri Aug 30 11:20:48 2024 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.36 (ruby-3.3.4).
 </div>
