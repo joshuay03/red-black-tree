@@ -751,6 +751,7 @@
       <pre class="lines">
 
 
+145
 146
 147
 148
@@ -832,13 +833,16 @@
 224
 225
 226
-227</pre>
+227
+228</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 146</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 145</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete!'>delete!</span> <span class='id identifier rubyid_node'>node</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cannot delete leaf node</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_instance_of?'>instance_of?</span> <span class='const'>LeafNode</span>
+
+  <span class='id identifier rubyid_original_node'>original_node</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span>
 
   <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_children_are_valid?'>children_are_valid?</span>
     <span class='id identifier rubyid_successor'>successor</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_left'>left</span>
@@ -860,14 +864,13 @@
     <span class='kw'>if</span> <span class='id identifier rubyid_is_root?'>is_root?</span> <span class='id identifier rubyid_node'>node</span>
       <span class='ivar'>@root</span> <span class='op'>=</span> <span class='kw'>nil</span>
     <span class='kw'>elsif</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_red?'>red?</span>
-      <span class='id identifier rubyid_leaf'>leaf</span> <span class='op'>=</span> <span class='const'>LeafNode</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-      <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_swap_position_with!'>swap_position_with!</span> <span class='id identifier rubyid_leaf'>leaf</span>
+      <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_swap_position_with!'>swap_position_with!</span> <span class='const'>LeafNode</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
     <span class='kw'>else</span>
       <span class='id identifier rubyid_direction'>direction</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_position'>position</span>
       <span class='id identifier rubyid_opp_direction'>opp_direction</span> <span class='op'>=</span> <span class='id identifier rubyid_opposite_direction'>opposite_direction</span> <span class='id identifier rubyid_direction'>direction</span>
 
       <span class='id identifier rubyid_loop'>loop</span> <span class='kw'>do</span>
-        <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_sibling'>sibling</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_sibling'>sibling</span><span class='period'>.</span><span class='id identifier rubyid_red?'>red?</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_sibling'>sibling</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_sibling'>sibling</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_sibling'>sibling</span><span class='period'>.</span><span class='id identifier rubyid_red?'>red?</span>
           <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_red!'>red!</span>
           <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_sibling'>sibling</span><span class='period'>.</span><span class='id identifier rubyid_black!'>black!</span>
           <span class='id identifier rubyid_rotate_sub_tree!'>rotate_sub_tree!</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span><span class='comma'>,</span> <span class='id identifier rubyid_direction'>direction</span>
@@ -876,11 +879,9 @@
         <span class='kw'>end</span>
 
         <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_distant_nephew'>distant_nephew</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_distant_nephew'>distant_nephew</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_distant_nephew'>distant_nephew</span><span class='period'>.</span><span class='id identifier rubyid_red?'>red?</span>
-          <span class='kw'>unless</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_sibling'>sibling</span><span class='period'>.</span><span class='id identifier rubyid_leaf?'>leaf?</span>
-            <span class='kw'>case</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_colour'>colour</span>
-            <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="RedBlackTree/Node.html" title="RedBlackTree::Node (class)">Node</a></span></span><span class='op'>::</span><span class='const'>RED</span> <span class='kw'>then</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_sibling'>sibling</span><span class='period'>.</span><span class='id identifier rubyid_red!'>red!</span>
-            <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="RedBlackTree/Node.html" title="RedBlackTree::Node (class)">Node</a></span></span><span class='op'>::</span><span class='const'>BLACK</span> <span class='kw'>then</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_sibling'>sibling</span><span class='period'>.</span><span class='id identifier rubyid_black!'>black!</span>
-            <span class='kw'>end</span>
+          <span class='kw'>case</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_colour'>colour</span>
+          <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="RedBlackTree/Node.html" title="RedBlackTree::Node (class)">Node</a></span></span><span class='op'>::</span><span class='const'>RED</span> <span class='kw'>then</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_sibling'>sibling</span><span class='period'>.</span><span class='id identifier rubyid_red!'>red!</span>
+          <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="RedBlackTree/Node.html" title="RedBlackTree::Node (class)">Node</a></span></span><span class='op'>::</span><span class='const'>BLACK</span> <span class='kw'>then</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_sibling'>sibling</span><span class='period'>.</span><span class='id identifier rubyid_black!'>black!</span>
           <span class='kw'>end</span>
           <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_black!'>black!</span>
           <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_distant_nephew'>distant_nephew</span><span class='period'>.</span><span class='id identifier rubyid_black!'>black!</span>
@@ -897,22 +898,25 @@
           <span class='kw'>next</span>
         <span class='kw'>end</span>
 
-        <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_red?'>red?</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_red?'>red?</span>
           <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_sibling'>sibling</span><span class='period'>.</span><span class='id identifier rubyid_red!'>red!</span> <span class='kw'>unless</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_sibling'>sibling</span><span class='period'>.</span><span class='id identifier rubyid_leaf?'>leaf?</span>
           <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_black!'>black!</span>
 
           <span class='kw'>break</span>
         <span class='kw'>end</span>
 
-        <span class='kw'>break</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_sibling'>sibling</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_sibling'>sibling</span><span class='period'>.</span><span class='id identifier rubyid_leaf?'>leaf?</span>
+          <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_sibling'>sibling</span><span class='period'>.</span><span class='id identifier rubyid_red!'>red!</span>
+        <span class='kw'>end</span>
+
+        <span class='kw'>break</span> <span class='kw'>unless</span> <span class='id identifier rubyid_node'>node</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span>
       <span class='kw'>end</span>
 
-      <span class='id identifier rubyid_leaf'>leaf</span> <span class='op'>=</span> <span class='const'>LeafNode</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-      <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_swap_position_with!'>swap_position_with!</span> <span class='id identifier rubyid_leaf'>leaf</span>
+      <span class='id identifier rubyid_original_node'>original_node</span><span class='period'>.</span><span class='id identifier rubyid_swap_position_with!'>swap_position_with!</span> <span class='const'>LeafNode</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 
-  <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_validate_free!'>validate_free!</span>
+  <span class='id identifier rubyid_original_node'>original_node</span><span class='period'>.</span><span class='id identifier rubyid_validate_free!'>validate_free!</span>
 
   <span class='id identifier rubyid_decrement_size!'>decrement_size!</span>
   <span class='id identifier rubyid_update_left_most_node!'>update_left_most_node!</span>
@@ -1017,12 +1021,12 @@
       <pre class="lines">
 
 
-242
 243
-244</pre>
+244
+245</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 242</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 243</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_data'>data</span>
   <span class='op'>!</span><span class='op'>!</span><span class='id identifier rubyid_search'>search</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
@@ -1109,14 +1113,14 @@
       <pre class="lines">
 
 
-233
 234
 235
 236
-237</pre>
+237
+238</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 233</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 234</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_search'>search</span> <span class='id identifier rubyid_data'>data</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>data must be provided for search</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_data'>data</span>
@@ -1206,7 +1210,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sat Aug 24 23:04:48 2024 by
+  Generated on Fri Aug 30 11:14:12 2024 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.36 (ruby-3.3.4).
 </div>
