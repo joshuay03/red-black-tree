@@ -91,8 +91,6 @@ class RedBlackTree
       raise ArgumentError, "Target parent already has #{direction} child" if (child = target_parent[direction]) && child.valid?
     end
 
-    opp_direction = opposite_direction direction if direction
-
     node.parent = nil
     node.left = LeafNode.new
     node.left.parent = node
@@ -114,17 +112,16 @@ class RedBlackTree
           node.parent.parent.red!
           node = node.parent.parent
         else
-          if node.position == direction
-            node = node.parent
-            rotate_sub_tree! node, opp_direction
+          opp_direction = node.opposite_position
+          if node.parent.position == opp_direction
+            rotate_sub_tree! node.parent, opp_direction
+            node = node[opp_direction]
           end
 
+          opp_direction = node.opposite_position
+          rotate_sub_tree! node.parent.parent, opp_direction
           node.parent.black!
-
-          if node.parent.parent
-            node.parent.parent.red!
-            rotate_sub_tree! node.parent.parent, direction
-          end
+          node.parent[opp_direction].red!
         end
 
         @root.black!
@@ -146,6 +143,8 @@ class RedBlackTree
   def delete! node
     raise ArgumentError, "cannot delete leaf node" if node.instance_of? LeafNode
 
+    original_node = node
+
     if node.children_are_valid?
       successor = node.left
       successor = successor.left until successor.left.leaf?
@@ -166,31 +165,23 @@ class RedBlackTree
       if is_root? node
         @root = nil
       elsif node.red?
-        leaf = LeafNode.new
-        node.swap_position_with! leaf
+        node.swap_position_with! LeafNode.new
       else
-        direction = node.position
-        opp_direction = opposite_direction direction
-
         loop do
-          if node.sibling.valid? && node.sibling.red?
+          if node.sibling && node.sibling.valid? && node.sibling.red?
             node.parent.red!
             node.sibling.black!
-            rotate_sub_tree! node.parent, direction
-
-            next
+            rotate_sub_tree! node.parent, node.position
           end
 
           if node.distant_nephew && node.distant_nephew.valid? && node.distant_nephew.red?
-            unless node.sibling.leaf?
-              case node.parent.colour
-              when Node::RED then node.sibling.red!
-              when Node::BLACK then node.sibling.black!
-              end
+            case node.parent.colour
+            when Node::RED then node.sibling.red!
+            when Node::BLACK then node.sibling.black!
             end
             node.parent.black!
             node.distant_nephew.black!
-            rotate_sub_tree! node.parent, direction
+            rotate_sub_tree! node.parent, node.position
 
             break
           end
@@ -198,27 +189,30 @@ class RedBlackTree
           if node.close_nephew && node.close_nephew.valid? && node.close_nephew.red?
             node.sibling.red! unless node.sibling.leaf?
             node.close_nephew.black!
-            rotate_sub_tree! node.sibling, opp_direction
+            rotate_sub_tree! node.sibling, node.opposite_position
 
             next
           end
 
-          if node.parent.red?
+          if node.parent && node.parent.red?
             node.sibling.red! unless node.sibling.leaf?
             node.parent.black!
 
             break
           end
 
-          break
+          if node.sibling && !node.sibling.leaf?
+            node.sibling.red!
+          end
+
+          break unless node = node.parent
         end
 
-        leaf = LeafNode.new
-        node.swap_position_with! leaf
+        original_node.swap_position_with! LeafNode.new
       end
     end
 
-    node.validate_free!
+    original_node.validate_free!
 
     decrement_size!
     update_left_most_node!

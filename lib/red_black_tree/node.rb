@@ -72,9 +72,9 @@ class RedBlackTree
       def position
         return unless @parent
 
-        case self
-        when @parent.left then LEFT
-        when @parent.right then RIGHT
+        case self.object_id
+        when @parent.left.object_id then LEFT
+        when @parent.right.object_id then RIGHT
         else raise StructuralError, "Disowned by parent"
         end
       end
@@ -147,13 +147,13 @@ class RedBlackTree
         self_position = position
         other_position = other_node.position
 
-        if other_node.parent == self
+        if other_node.parent.object_id == self.object_id
           self[other_position] = other_node[other_position]
           other_node[other_position] = self
 
           other_node.parent = @parent
           @parent = other_node
-        elsif other_node == @parent
+        elsif other_node.object_id == @parent.object_id
           other_node[self_position] = self[self_position]
           self[self_position] = other_node
 

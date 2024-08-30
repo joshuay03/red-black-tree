@@ -829,7 +829,7 @@ class TestRedBlackTree < Minitest::Test
     end
   end
 
-  class TestInheritance < Minitest::Test
+  class TestIntegration < Minitest::Test
     Work = Struct.new :min_latency, keyword_init: true
 
     class WorkNode < RedBlackTree::Node
@@ -838,17 +838,15 @@ class TestRedBlackTree < Minitest::Test
       end
     end
 
-    def test_multiple_nodes
-      tree = RedBlackTree.new
-      tree << WorkNode.new(Work.new min_latency: 0.8)
-      tree << WorkNode.new(Work.new min_latency: 1.2)
-      tree << WorkNode.new(Work.new min_latency: 0.8)
-      tree << WorkNode.new(Work.new min_latency: 0.4)
-
-      expected = [0.4, 0.8, 0.8, 1.2]
-      until tree.empty?
-        work = tree.shift
-        assert_equal work.data.min_latency, expected.shift
+    def test_ordering
+      10.times do
+        tree = RedBlackTree.new
+        expected = 250.times.map do
+          rand(10).tap do |value|
+            tree << WorkNode.new(Work.new min_latency: value)
+          end
+        end.sort
+        assert_equal expected.shift, tree.shift.data.min_latency until tree.empty?
       end
     end
   end
