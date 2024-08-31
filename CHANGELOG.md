@@ -2,7 +2,7 @@
 
 - Fix a bunch of issues in `RedBlackTree#insert!` and `RedBlackTree#delete!` algorithms
 - Fix `RedBlackTree::LeafNode`s being marked red
-- Handle comparison with `RedBlackTree::LeafNode` in subclasses of `RedBlackTreeNode`
+- Handle comparison with `RedBlackTree::LeafNode` in subclasses of `RedBlackTree::Node`
 - Add `RedBlackTree#include?`
 - Add `RedBlackTree#search`
 - Alias `RedBlackTree#left_most_node` as `RedBlackTree#min`
