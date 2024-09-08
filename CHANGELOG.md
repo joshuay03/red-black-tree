@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [0.1.2] - 2024-09-08
+
 - Fix a bunch of issues in `RedBlackTree#insert!` and `RedBlackTree#delete!` algorithms
 - Fix `RedBlackTree::LeafNode`s being marked red
 - Handle comparison with `RedBlackTree::LeafNode` in subclasses of `RedBlackTree::Node`
