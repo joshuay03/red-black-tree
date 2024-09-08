@@ -78,7 +78,8 @@
 
 <pre class="code ruby"><code class="ruby"><span class='const'>Work</span> <span class='op'>=</span> <span class='const'>Struct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='symbol'>:min_latency</span><span class='comma'>,</span> <span class='label'>keyword_init:</span> <span class='kw'>true</span>
 
-<span class='kw'>class</span> <span class='const'>WorkNode</span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="RedBlackTree.html" title="RedBlackTree (class)">RedBlackTree</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="RedBlackTree/Node.html" title="RedBlackTree::Node (class)">Node</a></span></span>
+<span class='comment'># Needs to be implemented by you
+</span><span class='kw'>class</span> <span class='const'>WorkNode</span> <span class='op'>&lt;</span> <span class='const'><span class='object_link'><a href="RedBlackTree.html" title="RedBlackTree (class)">RedBlackTree</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="RedBlackTree/Node.html" title="RedBlackTree::Node (class)">Node</a></span></span>
   <span class='kw'>def</span> <span class='op'>&lt;=&gt;</span> <span class='id identifier rubyid_other'>other</span>
     <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_min_latency'>min_latency</span> <span class='op'>&lt;=&gt;</span> <span class='id identifier rubyid_other'>other</span><span class='period'>.</span><span class='id identifier rubyid_data'>data</span><span class='period'>.</span><span class='id identifier rubyid_min_latency'>min_latency</span>
   <span class='kw'>end</span>
@@ -134,7 +135,7 @@
 </div></div>
 
       <div id="footer">
-  Generated on Sun Sep  8 00:55:01 2024 by
+  Generated on Sun Sep  8 07:34:12 2024 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.36 (ruby-3.3.4).
 </div>
