@@ -17,6 +17,7 @@ If bundler is not being used to manage dependencies, install the gem by executin
 ```ruby
 Work = Struct.new :min_latency, keyword_init: true
 
+# Needs to be implemented by you
 class WorkNode < RedBlackTree::Node
   def <=> other
     self.data.min_latency <=> other.data.min_latency
