@@ -36,6 +36,17 @@ until tree.empty?
 end
 ```
 
+## WIP Features
+
+- `RedBlackTree#traverse_in_order`
+- `RedBlackTree#traverse_pre_order`
+- `RedBlackTree#traverse_post_order`
+- `RedBlackTree#traverse_level_order`
+- `RedBlackTree#traverse` (default in-order)
+- `RedBlackTree#max`
+- `RedBlackTree#height`
+- `RedBlackTree#clear`
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `bundle exec rake test` to run the
