@@ -37,6 +37,50 @@ until tree.empty?
 end
 ```
 
+## Performance
+
+```ruby
+require 'benchmark/ips'
+
+Work = Struct.new :min_latency, keyword_init: true
+
+class WorkNode < RedBlackTree::Node
+  def <=> other
+    self.data.min_latency <=> other.data.min_latency
+  end
+end
+
+sample_data = 10_000.times.map { Work.new(min_latency: rand(100)) }
+
+Benchmark.ips do |x|
+  x.report("RedBlackTree") do
+    tree = RedBlackTree.new
+    sample_data.each { |work| tree << WorkNode.new(work); }
+    tree.shift until tree.empty?
+  end
+
+  x.report("Array") do
+    array = []
+    sample_data.each { |work| array << work; array.sort_by!(&:min_latency); }
+    array.shift until array.empty?
+  end
+
+  x.compare!
+end
+
+#=> ruby 3.3.4 (2024-07-09 revision be1089c8ec) [arm64-darwin24]
+#=> Warming up --------------------------------------
+#=>         RedBlackTree     1.000 i/100ms
+#=>                Array     1.000 i/100ms
+#=> Calculating -------------------------------------
+#=>         RedBlackTree      5.174 (± 0.0%) i/s  (193.27 ms/i) -     26.000 in   5.031399s
+#=>                Array      0.267 (± 0.0%) i/s     (3.75 s/i) -      2.000 in   7.501007s
+#=>
+#=> Comparison:
+#=>         RedBlackTree:        5.2 i/s
+#=>                Array:        0.3 i/s - 19.40x  slower
+```
+
 ## WIP Features
 
 - `RedBlackTree#traverse_in_order`
