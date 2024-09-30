@@ -39,6 +39,8 @@ end
 
 ## Performance
 
+### Sort and iterate 10,000 elements
+
 ```ruby
 require 'benchmark/ips'
 
@@ -50,7 +52,7 @@ class WorkNode < RedBlackTree::Node
   end
 end
 
-sample_data = 10_000.times.map { Work.new(min_latency: rand(100)) }
+sample_data = 10_000.times.map { Work.new(min_latency: rand(1_000)) }
 
 Benchmark.ips do |x|
   x.report("RedBlackTree") do
@@ -73,12 +75,66 @@ end
 #=>         RedBlackTree     1.000 i/100ms
 #=>                Array     1.000 i/100ms
 #=> Calculating -------------------------------------
-#=>         RedBlackTree      5.174 (± 0.0%) i/s  (193.27 ms/i) -     26.000 in   5.031399s
-#=>                Array      0.267 (± 0.0%) i/s     (3.75 s/i) -      2.000 in   7.501007s
+#=>         RedBlackTree      5.444 (± 0.0%) i/s  (183.69 ms/i) -     28.000 in   5.145867s
+#=>                Array      0.247 (± 0.0%) i/s     (4.04 s/i) -      2.000 in   8.084148s
 #=>
 #=> Comparison:
-#=>         RedBlackTree:        5.2 i/s
-#=>                Array:        0.3 i/s - 19.40x  slower
+#=>         RedBlackTree:        5.4 i/s
+#=>                Array:        0.2 i/s - 22.00x  slower
+```
+
+### Sort and search 10,000 elements
+
+```ruby
+require 'benchmark/ips'
+
+Work = Struct.new :min_latency, keyword_init: true
+
+class WorkNode < RedBlackTree::Node
+  def <=> other
+    self.data.min_latency <=> other.data.min_latency
+  end
+end
+
+sample_data = 10_000.times.map { Work.new(min_latency: rand(1_000)) }
+search_sample = sample_data.sample
+
+Benchmark.ips do |x|
+  x.report("RedBlackTree#search") do
+    tree = RedBlackTree.new
+    sample_data.each { |work| tree << WorkNode.new(work); }
+    raise unless tree.search search_sample
+  end
+
+  x.report("Array#find") do
+    array = []
+    sample_data.each { |work| array << work; array.sort_by!(&:min_latency); }
+    raise unless array.find { |work| work.min_latency == search_sample.min_latency }
+  end
+
+  x.report("Array#bsearch") do
+    array = []
+    sample_data.each { |work| array << work; array.sort_by!(&:min_latency); }
+    raise unless array.bsearch { |work| search_sample.min_latency <= work.min_latency }
+  end
+
+  x.compare!
+end
+
+#=> ruby 3.3.4 (2024-07-09 revision be1089c8ec) [arm64-darwin24]
+#=> Warming up --------------------------------------
+#=>  RedBlackTree#search     1.000 i/100ms
+#=>           Array#find     1.000 i/100ms
+#=>        Array#bsearch     1.000 i/100ms
+#=> Calculating -------------------------------------
+#=>  RedBlackTree#search     12.175 (± 0.0%) i/s   (82.14 ms/i) -     61.000 in   5.013347s
+#=>           Array#find      0.261 (± 0.0%) i/s     (3.84 s/i) -      2.000 in   7.671248s
+#=>        Array#bsearch      0.256 (± 0.0%) i/s     (3.91 s/i) -      2.000 in   7.821081s
+#=>
+#=> Comparison:
+#=>  RedBlackTree#search:       12.2 i/s
+#=>           Array#find:        0.3 i/s - 46.70x  slower
+#=>        Array#bsearch:        0.3 i/s - 47.61x  slower
 ```
 
 ## WIP Features
