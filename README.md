@@ -39,6 +39,11 @@ end
 
 ## Performance
 
+> [!NOTE]
+> Red-black trees are designed for specific use cases and are not intended as a general-purpose data structure. The
+comparisons below are provided merely to illustrate the performance characteristics of the gem. However, it is important
+to note that the benchmarks do not take into account the self-balancing nature of red-black trees.
+
 ### Sort and iterate 10,000 elements
 
 ```ruby
