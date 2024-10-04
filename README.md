@@ -61,26 +61,37 @@ Benchmark.ips do |x|
     tree.shift until tree.empty?
   end
 
-  x.report("Array") do
+  # 1:1 comparison
+  x.report("Array (gradual sort)") do
     array = []
     sample_data.each { |work| array << work; array.sort_by!(&:min_latency); }
+    array.shift until array.empty?
+  end
+
+  x.report("Array (single sort)") do
+    array = []
+    sample_data.each { |work| array << work; }
+    array.sort_by!(&:min_latency)
     array.shift until array.empty?
   end
 
   x.compare!
 end
 
-#=> ruby 3.3.4 (2024-07-09 revision be1089c8ec) [arm64-darwin24]
+#=> ruby 3.3.5 (2024-09-03 revision ef084cc8f4) [arm64-darwin24]
 #=> Warming up --------------------------------------
 #=>         RedBlackTree     1.000 i/100ms
-#=>                Array     1.000 i/100ms
+#=> Array (gradual sort)     1.000 i/100ms
+#=>  Array (single sort)    78.000 i/100ms
 #=> Calculating -------------------------------------
-#=>         RedBlackTree      5.444 (± 0.0%) i/s  (183.69 ms/i) -     28.000 in   5.145867s
-#=>                Array      0.247 (± 0.0%) i/s     (4.04 s/i) -      2.000 in   8.084148s
+#=>         RedBlackTree      5.417 (± 0.0%) i/s  (184.61 ms/i) -     28.000 in   5.172532s
+#=> Array (gradual sort)      0.268 (± 0.0%) i/s     (3.74 s/i) -      2.000 in   7.473005s
+#=>  Array (single sort)    768.691 (± 2.2%) i/s    (1.30 ms/i) -      3.900k in   5.076337s
 #=>
 #=> Comparison:
-#=>         RedBlackTree:        5.4 i/s
-#=>                Array:        0.2 i/s - 22.00x  slower
+#=>  Array (single sort):      768.7 i/s
+#=>         RedBlackTree:        5.4 i/s - 141.91x  slower
+#=> Array (gradual sort):        0.3 i/s - 2872.03x  slower
 ```
 
 ### Sort and search 10,000 elements
@@ -106,35 +117,65 @@ Benchmark.ips do |x|
     raise unless tree.search search_sample
   end
 
-  x.report("Array#find") do
+  # 1:1 comparison
+  x.report("Array#find (gradual sort)") do
     array = []
     sample_data.each { |work| array << work; array.sort_by!(&:min_latency); }
     raise unless array.find { |work| work.min_latency == search_sample.min_latency }
   end
 
-  x.report("Array#bsearch") do
+  x.report("Array#find (single sort)") do
+    array = []
+    sample_data.each { |work| array << work; }
+    array.sort_by!(&:min_latency)
+    raise unless array.find { |work| work.min_latency == search_sample.min_latency }
+  end
+
+  # 1:1 comparison
+  x.report("Array#bsearch (gradual sort)") do
     array = []
     sample_data.each { |work| array << work; array.sort_by!(&:min_latency); }
+    raise unless array.bsearch { |work| search_sample.min_latency <= work.min_latency }
+  end
+
+  x.report("Array#bsearch (single sort)") do
+    array = []
+    sample_data.each { |work| array << work; }
+    array.sort_by!(&:min_latency)
     raise unless array.bsearch { |work| search_sample.min_latency <= work.min_latency }
   end
 
   x.compare!
 end
 
-#=> ruby 3.3.4 (2024-07-09 revision be1089c8ec) [arm64-darwin24]
+#=> ruby 3.3.5 (2024-09-03 revision ef084cc8f4) [arm64-darwin24]
 #=> Warming up --------------------------------------
 #=>  RedBlackTree#search     1.000 i/100ms
-#=>           Array#find     1.000 i/100ms
-#=>        Array#bsearch     1.000 i/100ms
+#=> Array#find (gradual sort)
+#=>                          1.000 i/100ms
+#=> Array#find (single sort)
+#=>                         69.000 i/100ms
+#=> Array#bsearch (gradual sort)
+#=>                          1.000 i/100ms
+#=> Array#bsearch (single sort)
+#=>                         89.000 i/100ms
 #=> Calculating -------------------------------------
-#=>  RedBlackTree#search     12.175 (± 0.0%) i/s   (82.14 ms/i) -     61.000 in   5.013347s
-#=>           Array#find      0.261 (± 0.0%) i/s     (3.84 s/i) -      2.000 in   7.671248s
-#=>        Array#bsearch      0.256 (± 0.0%) i/s     (3.91 s/i) -      2.000 in   7.821081s
+#=>  RedBlackTree#search     12.926 (± 0.0%) i/s   (77.36 ms/i) -     65.000 in   5.030736s
+#=> Array#find (gradual sort)
+#=>                           0.262 (± 0.0%) i/s     (3.81 s/i) -      2.000 in   7.623953s
+#=> Array#find (single sort)
+#=>                         690.631 (± 1.0%) i/s    (1.45 ms/i) -      3.519k in   5.095823s
+#=> Array#bsearch (gradual sort)
+#=>                           0.267 (± 0.0%) i/s     (3.75 s/i) -      2.000 in   7.492482s
+#=> Array#bsearch (single sort)
+#=>                         895.413 (± 1.7%) i/s    (1.12 ms/i) -      4.539k in   5.070590s
 #=>
 #=> Comparison:
-#=>  RedBlackTree#search:       12.2 i/s
-#=>           Array#find:        0.3 i/s - 46.70x  slower
-#=>        Array#bsearch:        0.3 i/s - 47.61x  slower
+#=> Array#bsearch (single sort):      895.4 i/s
+#=> Array#find (single sort):         690.6 i/s - 1.30x  slower
+#=> RedBlackTree#search:               12.9 i/s - 69.27x  slower
+#=> Array#bsearch (gradual sort):       0.3 i/s - 3354.39x  slower
+#=> Array#find (gradual sort):          0.3 i/s - 3412.57x  slower
 ```
 
 ## WIP Features
