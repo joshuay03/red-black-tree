@@ -676,13 +676,39 @@ class TestRedBlackTree < Minitest::Test
   end
 
   class TestSearch < Minitest::Test
-    def test_new_tree_search
+    def test_search_without_data_and_without_block
+      tree = RedBlackTree.new
+      error = assert_raises ArgumentError do
+        tree.search
+      end
+      assert_equal "data must be provided for search", error.message
+    end
+
+    def test_search_with_nil_data_and_without_block
+      tree = RedBlackTree.new
+      error = assert_raises ArgumentError do
+        tree.search nil
+      end
+      assert_equal "data must be provided for search", error.message
+    end
+
+    def test_search_with_data_and_block
+      tree = RedBlackTree.new
+      error = assert_raises ArgumentError do
+        tree.search 10 do |node|
+          node.data == 10
+        end
+      end
+      assert_equal "provide either data or block, not both", error.message
+    end
+
+    def test_new_tree_data_search
       tree = RedBlackTree.new
       result = tree.search 10
       assert_nil result
     end
 
-    def test_single_node_tree_search
+    def test_single_node_tree_data_search
       tree = RedBlackTree.new
       node_10 = IntegerNode.new 10
       tree << node_10
@@ -690,7 +716,7 @@ class TestRedBlackTree < Minitest::Test
       assert_equal node_10, result
     end
 
-    def test_sub_tree_search
+    def test_sub_tree_data_search
       tree = RedBlackTree.new
       node_10 = IntegerNode.new 10
       tree << node_10
@@ -705,6 +731,46 @@ class TestRedBlackTree < Minitest::Test
       result = tree.search 5
       assert_equal node_5, result
       result = tree.search 15
+      assert_equal node_15, result
+    end
+
+    def test_new_tree_block_search
+      tree = RedBlackTree.new
+      result = tree.search do |node|
+        node.data == 10
+      end
+      assert_nil result
+    end
+
+    def test_single_node_tree_block_search
+      tree = RedBlackTree.new
+      node_10 = IntegerNode.new 10
+      tree << node_10
+      result = tree.search do |node|
+        node.data == 10
+      end
+      assert_equal node_10, result
+    end
+
+    def test_sub_tree_block_search
+      tree = RedBlackTree.new
+      node_10 = IntegerNode.new 10
+      tree << node_10
+      node_5 = IntegerNode.new 5
+      tree << node_5
+      node_15 = IntegerNode.new 15
+      tree << node_15
+      node_1 = IntegerNode.new 1
+      tree << node_1
+      node_4 = IntegerNode.new 4
+      tree << node_4
+      result = tree.search do |node|
+        node.data == 5
+      end
+      assert_equal node_5, result
+      result = tree.search do |node|
+        node.data == 15
+      end
       assert_equal node_15, result
     end
   end
@@ -738,6 +804,102 @@ class TestRedBlackTree < Minitest::Test
       assert tree.include? 15
       tree.delete! node_5
       refute tree.include? 5
+    end
+  end
+
+  class TestTraverseInPreOrder < Minitest::Test
+    def test_order
+      tree = RedBlackTree.new
+      node_10 = IntegerNode.new 10
+      tree << node_10
+      node_5 = IntegerNode.new 7
+      tree << node_5
+      node_15 = IntegerNode.new 15
+      tree << node_15
+      node_1 = IntegerNode.new 1
+      tree << node_1
+      node_4 = IntegerNode.new 4
+      tree << node_4
+      node_4 = IntegerNode.new 5
+      tree << node_4
+      expected_order = [10, 4, 1, 7, 5, 15]
+      actual_order = []
+      tree.traverse_pre_order do |node|
+        actual_order << node.data
+      end
+      assert_equal expected_order, actual_order
+    end
+  end
+
+  class TestTraverseInInOrder < Minitest::Test
+    def test_order
+      tree = RedBlackTree.new
+      node_10 = IntegerNode.new 10
+      tree << node_10
+      node_5 = IntegerNode.new 7
+      tree << node_5
+      node_15 = IntegerNode.new 15
+      tree << node_15
+      node_1 = IntegerNode.new 1
+      tree << node_1
+      node_4 = IntegerNode.new 4
+      tree << node_4
+      node_4 = IntegerNode.new 5
+      tree << node_4
+      expected_order = [1, 4, 5, 7, 10, 15]
+      actual_order = []
+      tree.traverse_in_order do |node|
+        actual_order << node.data
+      end
+      assert_equal expected_order, actual_order
+    end
+  end
+
+  class TestTraverseInPostOrder < Minitest::Test
+    def test_order
+      tree = RedBlackTree.new
+      node_10 = IntegerNode.new 10
+      tree << node_10
+      node_5 = IntegerNode.new 7
+      tree << node_5
+      node_15 = IntegerNode.new 15
+      tree << node_15
+      node_1 = IntegerNode.new 1
+      tree << node_1
+      node_4 = IntegerNode.new 4
+      tree << node_4
+      node_4 = IntegerNode.new 5
+      tree << node_4
+      expected_order = [1, 5, 7, 4, 15, 10]
+      actual_order = []
+      tree.traverse_post_order do |node|
+        actual_order << node.data
+      end
+      assert_equal expected_order, actual_order
+    end
+  end
+
+  class TestTraverseInLevelOrder < Minitest::Test
+    def test_order
+      tree = RedBlackTree.new
+      node_10 = IntegerNode.new 10
+      tree << node_10
+      node_5 = IntegerNode.new 7
+      tree << node_5
+      node_15 = IntegerNode.new 15
+      tree << node_15
+      node_1 = IntegerNode.new 1
+      tree << node_1
+      node_4 = IntegerNode.new 4
+      tree << node_4
+      node_4 = IntegerNode.new 5
+      tree << node_4
+      expected_order = [10, 4, 15, 1, 7, 5]
+      actual_order = []
+      tree.traverse_level_order do |node|
+        actual_order << node.data
+      end
+      assert_equal expected_order, actual_order
     end
   end
 

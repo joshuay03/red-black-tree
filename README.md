@@ -185,11 +185,6 @@ end
 
 ## WIP Features
 
-- `RedBlackTree#traverse_in_order`
-- `RedBlackTree#traverse_pre_order`
-- `RedBlackTree#traverse_post_order`
-- `RedBlackTree#traverse_level_order`
-- `RedBlackTree#traverse` (default in-order)
 - `RedBlackTree#max`
 - `RedBlackTree#height`
 - `RedBlackTree#clear`

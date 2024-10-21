@@ -14,7 +14,6 @@ class RedBlackTree
   # @return [RedBlackTree::Node, nil] the root node
   attr_reader :root
 
-  # @private
   # @return [RedBlackTree::Node, nil] the left most node
   attr_reader :left_most_node
   alias_method :min, :left_most_node
@@ -220,12 +219,19 @@ class RedBlackTree
 
   # Searches for a node which matches the given data/value.
   #
-  # @param data [any] the data to search for
+  # @param data [any, nil] the data to search for
+  # @yield [RedBlackTree::Node] the block to be used for comparison
   # @return [RedBlackTree::Node, nil] the matching node
-  def search data
-    raise ArgumentError, "data must be provided for search" unless data
+  def search data = nil, &block
+    if block_given?
+      raise ArgumentError, "provide either data or block, not both" if data
 
-    _search data, @root
+      _search_by_block block, @root
+    else
+      raise ArgumentError, "data must be provided for search" unless data
+
+      _search_by_data data, @root
+    end
   end
 
   # Returns true if there is a node which matches the given data/value, and false if there is not.
@@ -233,6 +239,65 @@ class RedBlackTree
   # @return [true, false]
   def include? data
     !!search(data)
+  end
+
+  # Traverses the tree in pre-order and yields each node.
+  #
+  # @param node [RedBlackTree::Node] the node to start the traversal from
+  # @yield [RedBlackTree::Node] the block to be executed for each node
+  # @return [void]
+  def traverse_pre_order(node = @root, &block)
+    return if node.nil? || node.leaf?
+
+    block.call node
+    traverse_pre_order node.left, &block
+    traverse_pre_order node.right, &block
+  end
+
+  # Traverses the tree in in-order and yields each node.
+  #
+  # @param node [RedBlackTree::Node] the node to start the traversal from
+  # @yield [RedBlackTree::Node] the block to be executed for each node
+  # @return [void]
+  def traverse_in_order node = @root, &block
+    return if node.nil? || node.leaf?
+
+    traverse_in_order node.left, &block
+    block.call node
+    traverse_in_order node.right, &block
+  end
+  alias_method :traverse, :traverse_in_order
+
+  # Traverses the tree in post-order and yields each node.
+  #
+  # @param node [RedBlackTree::Node] the node to start the traversal from
+  # @yield [RedBlackTree::Node] the block to be executed for each node
+  # @return [void]
+  def traverse_post_order(node = @root, &block)
+    return if node.nil? || node.leaf?
+
+    traverse_post_order node.left, &block
+    traverse_post_order node.right, &block
+    block.call node
+  end
+
+  # Traverses the tree in level-order and yields each node.
+  #
+  # @param node [RedBlackTree::Node] the node to start the traversal from
+  # @yield [RedBlackTree::Node] the block to be executed for each node
+  # @return [void]
+  def traverse_level_order(&block)
+    return if @root.nil?
+
+    queue = [@root]
+    until queue.empty?
+      node = queue.shift
+      next if node.nil? || node.leaf?
+
+      block.call node
+      queue << node.left
+      queue << node.right
+    end
   end
 
   private
@@ -263,15 +328,23 @@ class RedBlackTree
     opp_direction_child
   end
 
-  def _search data, current_node
-    return if current_node.nil? || current_node.leaf?
-    return current_node if data == current_node.data
+  def _search_by_block block, node
+    traverse node do |current|
+      next if current.leaf?
 
-    mock_node = current_node.class.new data
-    if mock_node >= current_node
-      _search data, current_node.right
+      return current if block.call current
+    end
+  end
+
+  def _search_by_data data, node
+    return if node.nil? || node.leaf?
+    return node if data == node.data
+
+    mock_node = node.class.new data
+    if mock_node >= node
+      _search_by_data data, node.right
     else
-      _search data, current_node.left
+      _search_by_data data, node.left
     end
   end
 
