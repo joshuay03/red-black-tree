@@ -2,6 +2,7 @@
 
 require_relative "utils"
 require_relative "node/leaf_node_comparable"
+require_relative "node/data_delegation"
 require_relative "node/left_right_element_referencers"
 
 class RedBlackTree
@@ -13,6 +14,7 @@ class RedBlackTree
     end
 
     include Comparable
+    include DataDelegation
 
     # @return [any] the data/value representing the node
     attr_reader :data

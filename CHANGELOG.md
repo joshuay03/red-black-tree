@@ -7,6 +7,7 @@
 - Add `RedBlackTree#traverse_level_order`
 - Add `RedBlackTree#traverse`, alias of `RedBlackTree#traverse_in_order`
 - Extend `RedBlackTree#search` to accept a block
+- Delegate missing `RedBlackTree::Node` methods to its `#data`
 
 ## [0.1.2] - 2024-09-08
 

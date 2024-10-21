@@ -25,4 +25,14 @@ class TestNode < Minitest::Test
     assert_nil node.left
     assert_nil node.right
   end
+
+  def test_node_data_delegation
+    node = RedBlackTree::Node.new "root"
+    assert_equal 4, node.length
+    assert_equal "r", node.chars.first
+    error = assert_raises do
+      node.non_existent_string_method
+    end
+    assert_equal "undefined method `non_existent_string_method' for an instance of RedBlackTree::Node", error.message
+  end
 end
