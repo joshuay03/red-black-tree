@@ -77,8 +77,8 @@ class RedBlackTree
   #
   # @private ideally this is only used internally e.g. in #<< which has context on the ideal location for the node
   # @param node [RedBlackTree::Node] the node to be inserted
-  # @param target_parent [RedBlackTree::Node, nil] the parent under which the node should be inserted
-  # @param direction ["left", "right", nil] the direction of the node relative to the parent
+  # @param target_parent [RedBlackTree::Node] the parent under which the node should be inserted
+  # @param direction ["left", "right"] the direction of the node relative to the parent
   # @return [RedBlackTree] self
   def insert! node, target_parent = nil, direction = nil
     raise ArgumentError, "cannot insert leaf node" if node.instance_of? LeafNode
@@ -219,7 +219,7 @@ class RedBlackTree
 
   # Searches for a node which matches the given data/value.
   #
-  # @param data [any, nil] the data to search for
+  # @param data [any] the data to search for
   # @yield [RedBlackTree::Node] the block to be used for comparison
   # @return [RedBlackTree::Node, nil] the matching node
   def search data = nil, &block
@@ -246,7 +246,7 @@ class RedBlackTree
   # @param node [RedBlackTree::Node] the node to start the traversal from
   # @yield [RedBlackTree::Node] the block to be executed for each node
   # @return [void]
-  def traverse_pre_order(node = @root, &block)
+  def traverse_pre_order node = @root, &block
     return if node.nil? || node.leaf?
 
     block.call node
@@ -273,7 +273,7 @@ class RedBlackTree
   # @param node [RedBlackTree::Node] the node to start the traversal from
   # @yield [RedBlackTree::Node] the block to be executed for each node
   # @return [void]
-  def traverse_post_order(node = @root, &block)
+  def traverse_post_order node = @root, &block
     return if node.nil? || node.leaf?
 
     traverse_post_order node.left, &block
@@ -283,10 +283,9 @@ class RedBlackTree
 
   # Traverses the tree in level-order and yields each node.
   #
-  # @param node [RedBlackTree::Node] the node to start the traversal from
   # @yield [RedBlackTree::Node] the block to be executed for each node
   # @return [void]
-  def traverse_level_order(&block)
+  def traverse_level_order &block
     return if @root.nil?
 
     queue = [@root]

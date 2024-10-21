@@ -28,8 +28,11 @@ class TestNode < Minitest::Test
 
   def test_node_data_delegation
     node = RedBlackTree::Node.new "root"
+    assert node.respond_to? :length
     assert_equal 4, node.length
+    assert node.respond_to? :chars
     assert_equal "r", node.chars.first
+    refute node.respond_to? :non_existent_string_method
     error = assert_raises do
       node.non_existent_string_method
     end
