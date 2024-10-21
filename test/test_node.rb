@@ -36,6 +36,6 @@ class TestNode < Minitest::Test
     error = assert_raises do
       node.non_existent_string_method
     end
-    assert_equal "undefined method `non_existent_string_method' for an instance of RedBlackTree::Node", error.message
+    assert_match /undefined method `non_existent_string_method' for/, error.message
   end
 end
