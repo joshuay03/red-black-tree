@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [0.1.3] - 2024-10-21
+
 - Make `RedBlackTree#left_most_node` public
 - Add `RedBlackTree#traverse_pre_order`
 - Add `RedBlackTree#traverse_in_order`
