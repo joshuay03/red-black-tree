@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [0.1.4] - 2024-10-27
+
 - Fix incorrect `super` fallback in `RedBlackTree::DataDelegation#respond_to_missing?`
 
 ## [0.1.3] - 2024-10-21
