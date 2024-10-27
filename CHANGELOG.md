@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [0.1.5] - 2024-10-28
+
 - Alias `RedBlackTree#search` as `RedBlackTree#find`
 - Add `RedBlackTree#select`, aliased as `RedBlackTree#filter` and `RedBlackTree#find_all`
 
