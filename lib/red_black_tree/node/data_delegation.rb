@@ -11,7 +11,7 @@ class RedBlackTree
     end
 
     def respond_to_missing? method_name, include_private = false
-      @data.respond_to? method_name, include_private || super
+      (@data.respond_to? method_name, include_private) || super
     end
   end
 end
