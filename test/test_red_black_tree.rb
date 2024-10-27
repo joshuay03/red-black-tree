@@ -730,8 +730,8 @@ class TestRedBlackTree < Minitest::Test
       tree << node_4
       result = tree.search 5
       assert_equal node_5, result
-      result = tree.search 15
-      assert_equal node_15, result
+      result = tree.search 25
+      assert_nil result
     end
 
     def test_new_tree_block_search
@@ -769,9 +769,9 @@ class TestRedBlackTree < Minitest::Test
       end
       assert_equal node_5, result
       result = tree.search do |node|
-        node.data == 15
+        node.data == 25
       end
-      assert_equal node_15, result
+      assert_nil result
     end
   end
 
