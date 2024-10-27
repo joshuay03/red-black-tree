@@ -224,7 +224,7 @@ class RedBlackTree
   # @return [RedBlackTree::Node, nil] the matching node
   def search data = nil, &block
     if block_given?
-      raise ArgumentError, "provide either data or block, not both" if data
+      raise ArgumentError, "provide either data or block, not both for search" if data
 
       _search_by_block block, @root
     else
@@ -233,6 +233,15 @@ class RedBlackTree
       _search_by_data data, @root
     end
   end
+  alias_method :find, :search
+
+  def select &block
+    raise ArgumentError, "block must be provided for select" unless block
+
+    _select_by_block block, @root
+  end
+  alias_method :filter, :select
+  alias_method :find_all, :select
 
   # Returns true if there is a node which matches the given data/value, and false if there is not.
   #
@@ -327,14 +336,6 @@ class RedBlackTree
     opp_direction_child
   end
 
-  def _search_by_block block, node
-    traverse node do |current|
-      next if current.leaf?
-
-      return current if block.call current
-    end
-  end
-
   def _search_by_data data, node
     return if node.nil? || node.leaf?
     return node if data == node.data
@@ -344,6 +345,24 @@ class RedBlackTree
       _search_by_data data, node.right
     else
       _search_by_data data, node.left
+    end
+  end
+
+  def _search_by_block block, node
+    traverse node do |current|
+      next if current.leaf?
+
+      return current if block.call current
+    end
+  end
+
+  def _select_by_block block, node
+    [].tap do |result|
+      traverse node do |current|
+        next if current.leaf?
+
+        result << current if block.call current
+      end
     end
   end
 

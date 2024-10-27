@@ -699,7 +699,7 @@ class TestRedBlackTree < Minitest::Test
           node.data == 10
         end
       end
-      assert_equal "provide either data or block, not both", error.message
+      assert_equal "provide either data or block, not both for search", error.message
     end
 
     def test_new_tree_data_search
@@ -772,6 +772,56 @@ class TestRedBlackTree < Minitest::Test
         node.data == 25
       end
       assert_nil result
+    end
+  end
+
+  class TestSelect < Minitest::Test
+    def test_select_without_block
+      tree = RedBlackTree.new
+      error = assert_raises ArgumentError do
+        tree.select
+      end
+      assert_equal "block must be provided for select", error.message
+    end
+
+    def test_new_tree_block_select
+      tree = RedBlackTree.new
+      result = tree.select do |node|
+        node.data == 10
+      end
+      assert_equal [], result
+    end
+
+    def test_single_node_tree_block_select
+      tree = RedBlackTree.new
+      node_10 = IntegerNode.new 10
+      tree << node_10
+      result = tree.select do |node|
+        node.data == 10
+      end
+      assert_equal [node_10], result
+    end
+
+    def test_sub_tree_block_select
+      tree = RedBlackTree.new
+      node_10 = IntegerNode.new 10
+      tree << node_10
+      node_5 = IntegerNode.new 5
+      tree << node_5
+      node_15 = IntegerNode.new 15
+      tree << node_15
+      node_1 = IntegerNode.new 1
+      tree << node_1
+      node_4 = IntegerNode.new 4
+      tree << node_4
+      result = tree.select do |node|
+        node.data % 5 == 0
+      end
+      assert_equal [node_5, node_10, node_15], result
+      result = tree.select do |node|
+        node.data == 25
+      end
+      assert_equal [], result
     end
   end
 

@@ -1,5 +1,8 @@
 ## [Unreleased]
 
+- Alias `RedBlackTree#search` as `RedBlackTree#find`
+- Add `RedBlackTree#select`, aliased as `RedBlackTree#filter` and `RedBlackTree#find_all`
+
 ## [0.1.4] - 2024-10-27
 
 - Fix incorrect `super` fallback in `RedBlackTree::DataDelegation#respond_to_missing?`
