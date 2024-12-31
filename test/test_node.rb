@@ -36,6 +36,10 @@ class TestNode < Minitest::Test
     error = assert_raises do
       node.non_existent_string_method
     end
-    assert_match /undefined method `non_existent_string_method' for/, error.message
+    if RUBY_VERSION >= "3.4"
+      assert_match /undefined method 'non_existent_string_method' for/, error.message
+    else
+      assert_match /undefined method `non_existent_string_method' for/, error.message
+    end
   end
 end
