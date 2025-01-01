@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+- Prefer node deletion over data swapping
+
 ## [0.1.5] - 2024-10-28
 
 - Alias `RedBlackTree#search` as `RedBlackTree#find`

@@ -333,7 +333,7 @@ class TestRedBlackTree < Minitest::Test
       assert node_15.red?
       assert node_15.left.leaf?
       assert node_15.right.leaf?
-      assert_equal root_node_10, tree.left_most_node
+      assert_equal root_node_5, tree.left_most_node
     end
 
     def test_delete_non_root_node_with_valid_children

@@ -125,12 +125,6 @@ class RedBlackTree
         raise StructuralError, "Node is still chained to #{anchors.join(", ")}"
       end
 
-      def swap_data_with! other_node
-        temp_data = @data
-        @data = other_node.data
-        other_node.data = temp_data
-      end
-
       def swap_colour_with! other_node
         temp_colour = @colour
 
@@ -148,27 +142,47 @@ class RedBlackTree
       def swap_position_with! other_node
         self_position = position
         other_position = other_node.position
+        opp_other_position = opposite_direction other_position if other_position
 
         if other_node.parent.object_id == self.object_id
           self[other_position] = other_node[other_position]
           other_node[other_position] = self
 
+          self[other_position].parent = self
           other_node.parent = @parent
-          @parent = other_node
-        elsif other_node.object_id == @parent.object_id
-          other_node[self_position] = self[self_position]
-          self[self_position] = other_node
 
-          temp_parent = other_node.parent
-          other_node.parent = self
-          @parent = temp_parent
+          @parent[self_position] = other_node if self_position
+          @parent = other_node
+
+          temp_node = self[opp_other_position]
+          self[opp_other_position] = other_node[opp_other_position]
+          other_node[opp_other_position] = temp_node
+
+          self[opp_other_position].parent = self
+          other_node[opp_other_position].parent = other_node
+        elsif other_node.object_id == @parent.object_id
+          other_node.swap_position_with! self
         else
           other_node.parent[other_position] = self if other_node.parent
           @parent[self_position] = other_node if @parent
 
-          temp_parent = other_node.parent
+          temp_node = other_node.parent
           other_node.parent = @parent
-          @parent = temp_parent
+          @parent = temp_node
+
+          temp_node = other_node.left
+          other_node.left = @left
+          @left = temp_node
+
+          @left.parent = self if @left
+          other_node.left.parent = other_node if other_node.left
+
+          temp_node = other_node.right
+          other_node.right = @right
+          @right = temp_node
+
+          @right.parent = self if @right
+          other_node.right.parent = other_node if other_node.right
         end
       end
     end

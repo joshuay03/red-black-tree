@@ -145,21 +145,38 @@ class RedBlackTree
     original_node = node
 
     if node.children_are_valid?
+      is_root = is_root? node
+
       successor = node.left
       successor = successor.left until successor.left.leaf?
-      node.swap_data_with! successor
+      node.swap_colour_with! successor
+      node.swap_position_with! successor
+      node.swap_position_with! LeafNode.new
 
-      return delete! successor
+      @root = successor if is_root
+
+      original_node.validate_free!
+
+      decrement_size!
+      update_left_most_node!
+
+      return self
     elsif node.single_child_is_valid?
       is_root = is_root? node
 
       valid_child = node.children.find(&:valid?)
-      node.swap_data_with! valid_child
-      node.black!
+      valid_child.black!
+      node.swap_position_with! valid_child
+      node.swap_position_with! LeafNode.new
 
-      @root = node if is_root
+      @root = valid_child if is_root
 
-      return delete! valid_child
+      original_node.validate_free!
+
+      decrement_size!
+      update_left_most_node!
+
+      return self
     elsif node.children_are_leaves?
       if is_root? node
         @root = nil
