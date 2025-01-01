@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [0.1.6] - 2025-01-01
+
 - Prefer node deletion over data swapping
 
 ## [0.1.5] - 2024-10-28
