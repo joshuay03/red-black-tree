@@ -1049,7 +1049,24 @@
 215
 216
 217
-218</pre>
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 142</span>
@@ -1060,21 +1077,38 @@
   <span class='id identifier rubyid_original_node'>original_node</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span>
 
   <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_children_are_valid?'>children_are_valid?</span>
+    <span class='id identifier rubyid_is_root'>is_root</span> <span class='op'>=</span> <span class='id identifier rubyid_is_root?'>is_root?</span> <span class='id identifier rubyid_node'>node</span>
+
     <span class='id identifier rubyid_successor'>successor</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_left'>left</span>
     <span class='id identifier rubyid_successor'>successor</span> <span class='op'>=</span> <span class='id identifier rubyid_successor'>successor</span><span class='period'>.</span><span class='id identifier rubyid_left'>left</span> <span class='kw'>until</span> <span class='id identifier rubyid_successor'>successor</span><span class='period'>.</span><span class='id identifier rubyid_left'>left</span><span class='period'>.</span><span class='id identifier rubyid_leaf?'>leaf?</span>
-    <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_swap_data_with!'>swap_data_with!</span> <span class='id identifier rubyid_successor'>successor</span>
+    <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_swap_colour_with!'>swap_colour_with!</span> <span class='id identifier rubyid_successor'>successor</span>
+    <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_swap_position_with!'>swap_position_with!</span> <span class='id identifier rubyid_successor'>successor</span>
+    <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_swap_position_with!'>swap_position_with!</span> <span class='const'>LeafNode</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
 
-    <span class='kw'>return</span> <span class='id identifier rubyid_delete!'>delete!</span> <span class='id identifier rubyid_successor'>successor</span>
+    <span class='ivar'>@root</span> <span class='op'>=</span> <span class='id identifier rubyid_successor'>successor</span> <span class='kw'>if</span> <span class='id identifier rubyid_is_root'>is_root</span>
+
+    <span class='id identifier rubyid_original_node'>original_node</span><span class='period'>.</span><span class='id identifier rubyid_validate_free!'>validate_free!</span>
+
+    <span class='id identifier rubyid_decrement_size!'>decrement_size!</span>
+    <span class='id identifier rubyid_update_left_most_node!'>update_left_most_node!</span>
+
+    <span class='kw'>return</span> <span class='kw'>self</span>
   <span class='kw'>elsif</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_single_child_is_valid?'>single_child_is_valid?</span>
     <span class='id identifier rubyid_is_root'>is_root</span> <span class='op'>=</span> <span class='id identifier rubyid_is_root?'>is_root?</span> <span class='id identifier rubyid_node'>node</span>
 
     <span class='id identifier rubyid_valid_child'>valid_child</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_children'>children</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:valid?</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_swap_data_with!'>swap_data_with!</span> <span class='id identifier rubyid_valid_child'>valid_child</span>
-    <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_black!'>black!</span>
+    <span class='id identifier rubyid_valid_child'>valid_child</span><span class='period'>.</span><span class='id identifier rubyid_black!'>black!</span>
+    <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_swap_position_with!'>swap_position_with!</span> <span class='id identifier rubyid_valid_child'>valid_child</span>
+    <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_swap_position_with!'>swap_position_with!</span> <span class='const'>LeafNode</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
 
-    <span class='ivar'>@root</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span> <span class='kw'>if</span> <span class='id identifier rubyid_is_root'>is_root</span>
+    <span class='ivar'>@root</span> <span class='op'>=</span> <span class='id identifier rubyid_valid_child'>valid_child</span> <span class='kw'>if</span> <span class='id identifier rubyid_is_root'>is_root</span>
 
-    <span class='kw'>return</span> <span class='id identifier rubyid_delete!'>delete!</span> <span class='id identifier rubyid_valid_child'>valid_child</span>
+    <span class='id identifier rubyid_original_node'>original_node</span><span class='period'>.</span><span class='id identifier rubyid_validate_free!'>validate_free!</span>
+
+    <span class='id identifier rubyid_decrement_size!'>decrement_size!</span>
+    <span class='id identifier rubyid_update_left_most_node!'>update_left_most_node!</span>
+
+    <span class='kw'>return</span> <span class='kw'>self</span>
   <span class='kw'>elsif</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_children_are_leaves?'>children_are_leaves?</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_is_root?'>is_root?</span> <span class='id identifier rubyid_node'>node</span>
       <span class='ivar'>@root</span> <span class='op'>=</span> <span class='kw'>nil</span>
@@ -1229,12 +1263,12 @@
       <pre class="lines">
 
 
-249
-250
-251</pre>
+266
+267
+268</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 249</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 266</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_data'>data</span>
   <span class='op'>!</span><span class='op'>!</span><span class='id identifier rubyid_search'>search</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
@@ -1332,20 +1366,20 @@
       <pre class="lines">
 
 
-225
-226
-227
-228
-229
-230
-231
-232
-233
-234
-235</pre>
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 225</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 242</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_search'>search</span> <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
@@ -1404,14 +1438,14 @@
       <pre class="lines">
 
 
-238
-239
-240
-241
-242</pre>
+255
+256
+257
+258
+259</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 238</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 255</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_select'>select</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>block must be provided for select</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_block'>block</span>
@@ -1566,16 +1600,16 @@
       <pre class="lines">
 
 
-271
-272
-273
-274
-275
-276
-277</pre>
+288
+289
+290
+291
+292
+293
+294</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 271</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 288</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_traverse_in_order'>traverse_in_order</span> <span class='id identifier rubyid_node'>node</span> <span class='op'>=</span> <span class='ivar'>@root</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_leaf?'>leaf?</span>
@@ -1633,22 +1667,22 @@
       <pre class="lines">
 
 
-297
-298
-299
-300
-301
-302
-303
-304
-305
-306
-307
-308
-309</pre>
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 297</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 314</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_traverse_level_order'>traverse_level_order</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='ivar'>@root</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -1734,16 +1768,16 @@
       <pre class="lines">
 
 
-285
-286
-287
-288
-289
-290
-291</pre>
+302
+303
+304
+305
+306
+307
+308</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 285</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 302</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_traverse_post_order'>traverse_post_order</span> <span class='id identifier rubyid_node'>node</span> <span class='op'>=</span> <span class='ivar'>@root</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_leaf?'>leaf?</span>
@@ -1823,16 +1857,16 @@
       <pre class="lines">
 
 
-258
-259
-260
-261
-262
-263
-264</pre>
+275
+276
+277
+278
+279
+280
+281</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 258</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 275</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_traverse_pre_order'>traverse_pre_order</span> <span class='id identifier rubyid_node'>node</span> <span class='op'>=</span> <span class='ivar'>@root</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_leaf?'>leaf?</span>
@@ -1851,7 +1885,7 @@
 </div>
 
       <div id="footer">
-  Generated on Wed Jan  1 13:25:53 2025 by
+  Generated on Wed Jan  1 13:36:10 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.36 (ruby-3.4.1).
 </div>
