@@ -7,7 +7,7 @@ class RedBlackTree
         case direction
         when Node::LEFT then @left
         when Node::RIGHT then @right
-        else raise ArgumentError, "Direction must be one of #{Implementation::DIRECTIONS}"
+        else raise ArgumentError, "Direction must be one of #{Implementation::DIRECTIONS}, got #{direction}"
         end
       end
 
@@ -15,7 +15,7 @@ class RedBlackTree
         case direction
         when Node::LEFT then @left = node
         when Node::RIGHT then @right = node
-        else raise ArgumentError, "Direction must be one of #{Implementation::DIRECTIONS}"
+        else raise ArgumentError, "Direction must be one of #{Implementation::DIRECTIONS}, got #{direction}"
         end
       end
     end
