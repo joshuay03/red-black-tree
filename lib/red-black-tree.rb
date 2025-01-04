@@ -20,6 +20,7 @@ class RedBlackTree
 
   def initialize
     @size = 0
+    @root = nil
     @left_most_node = nil
   end
 
