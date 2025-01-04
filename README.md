@@ -187,7 +187,6 @@ end
 
 - `RedBlackTree#max`
 - `RedBlackTree#height`
-- `RedBlackTree#clear`
 
 ## Development
 

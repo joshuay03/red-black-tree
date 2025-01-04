@@ -221,6 +221,17 @@ class RedBlackTree
     self
   end
 
+  # Removes all nodes from the tree.
+  #
+  # @return [RedBlackTree] self
+  def clear!
+    @root = nil
+    @size = 0
+    @left_most_node = nil
+
+    self
+  end
+
   # Searches for a node which matches the given data/value.
   #
   # @param data [any] the data to search for

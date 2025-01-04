@@ -675,6 +675,60 @@ class TestRedBlackTree < Minitest::Test
     end
   end
 
+  class TestClear < Minitest::Test
+    def test_new_tree_clear
+      tree = RedBlackTree.new
+      assert_equal 0, tree.size
+      assert_nil tree.root
+      assert_nil tree.left_most_node
+
+      tree.clear!
+      assert_equal 0, tree.size
+      assert_nil tree.root
+      assert_nil tree.left_most_node
+    end
+
+    def test_single_node_tree_clear
+      tree = RedBlackTree.new
+      node_10 = IntegerNode.new 10
+      tree << node_10
+      assert_equal 1, tree.size
+      assert_equal node_10, tree.root
+      assert_equal node_10, tree.left_most_node
+
+      tree.clear!
+      assert_equal 0, tree.size
+      assert_nil tree.root
+      assert_nil tree.left_most_node
+    end
+
+    def test_sub_tree_clear
+      tree = RedBlackTree.new
+      node_10 = IntegerNode.new 10
+      tree << node_10
+      assert_equal 1, tree.size
+      assert_equal node_10, tree.root
+      assert_equal node_10, tree.left_most_node
+
+      node_5 = IntegerNode.new 5
+      tree << node_5
+      assert_equal 2, tree.size
+      assert_equal node_10, tree.root
+      assert_equal node_5, tree.left_most_node
+
+      node_15 = IntegerNode.new 15
+      tree << node_15
+      assert_equal 3, tree.size
+      assert_equal node_10, tree.root
+      assert_equal node_5, tree.left_most_node
+
+      tree.clear!
+      assert_equal 0, tree.size
+      assert_nil tree.root
+      assert_nil tree.left_most_node
+    end
+  end
+
   class TestSearch < Minitest::Test
     def test_search_without_data_and_without_block
       tree = RedBlackTree.new

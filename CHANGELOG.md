@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+- Add `RedBlackTree#clear!`
+
 ## [0.1.6] - 2025-01-01
 
 - Prefer node deletion over data swapping
