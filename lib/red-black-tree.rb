@@ -154,13 +154,6 @@ class RedBlackTree
       node.swap_position_with! LeafNode.new
 
       @root = successor if is_root
-
-      original_node.validate_free!
-
-      decrement_size!
-      update_left_most_node!
-
-      return self
     elsif node.single_child_is_valid?
       is_root = is_root? node
 
@@ -170,13 +163,6 @@ class RedBlackTree
       node.swap_position_with! LeafNode.new
 
       @root = valid_child if is_root
-
-      original_node.validate_free!
-
-      decrement_size!
-      update_left_most_node!
-
-      return self
     elsif node.children_are_leaves?
       if is_root? node
         @root = nil
