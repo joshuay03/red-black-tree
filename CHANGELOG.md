@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [0.1.7] - 2025-01-05
+
 - Change `RedBlackTree#delete!` return value to the deleted node
 - Add `RedBlackTree#clear!`
 
