@@ -19,6 +19,9 @@ class RedBlackTree
     # @return [any] the data/value representing the node
     attr_reader :data
 
+    # @return [RedBlackTree::Node, nil] the tree this node belongs to
+    attr_reader :tree
+
     # @param data [any] a non-nil data/value representing the node
     # @return [Node] a new instance of Node
     def initialize data
@@ -51,10 +54,8 @@ class RedBlackTree
       RIGHT = "right"
       DIRECTIONS = [LEFT, RIGHT].freeze
 
-      attr_writer :data
-      attr_accessor :colour
-      attr_accessor :tree, :parent
-      attr_accessor :left, :right
+      attr_writer :data, :tree
+      attr_accessor :colour, :parent, :left, :right
       include LeftRightElementReferencers
 
       def red? = @colour == RED
@@ -116,6 +117,8 @@ class RedBlackTree
       end
 
       def validate_free!
+        raise StructuralError, "Node is still chained to a tree" if @tree
+
         anchors = []
         anchors << "parent" if @parent
         anchors << "left child" if @left && @left.valid?

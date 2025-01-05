@@ -91,6 +91,7 @@ class RedBlackTree
       raise ArgumentError, "Target parent already has #{direction} child" if (child = target_parent[direction]) && child.valid?
     end
 
+    node.tree = self
     node.parent = nil
     node.left = LeafNode.new
     node.left.parent = node
@@ -139,9 +140,15 @@ class RedBlackTree
   # Removes the given node from the tree.
   #
   # @param node [RedBlackTree::Node] the node to be removed
-  # @return [RedBlackTree] self
+  # @return [RedBlackTree::Node, nil] the removed node
   def delete! node
     raise ArgumentError, "cannot delete leaf node" if node.instance_of? LeafNode
+
+    if node.tree.nil?
+      return
+    elsif node.tree != self
+      raise ArgumentError, "node does not belong to this tree"
+    end
 
     original_node = node
 
@@ -213,12 +220,13 @@ class RedBlackTree
       end
     end
 
+    original_node.tree = nil
     original_node.validate_free!
 
     decrement_size!
     update_left_most_node!
 
-    self
+    original_node
   end
 
   # Removes all nodes from the tree.

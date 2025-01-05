@@ -295,6 +295,38 @@ class TestRedBlackTree < Minitest::Test
       assert_equal "cannot delete leaf node", error.message
     end
 
+    def test_delete_tree_less_node
+      tree = RedBlackTree.new
+      assert_equal 0, tree.size
+      assert_nil tree.root
+      assert_nil tree.left_most_node
+
+      node_10 = IntegerNode.new 10
+      assert_nil tree.delete! node_10
+      assert_equal 0, tree.size
+      assert_nil tree.root
+      assert_nil tree.left_most_node
+    end
+
+    def test_delete_different_tree_node
+      tree_1 = RedBlackTree.new
+      assert_equal 0, tree_1.size
+      assert_nil tree_1.root
+      assert_nil tree_1.left_most_node
+
+      tree_2 = RedBlackTree.new
+      node_10 = IntegerNode.new 10
+      tree_2 << node_10
+      assert_equal 1, tree_2.size
+      assert_equal node_10, tree_2.root
+      assert_equal node_10, tree_2.left_most_node
+
+      error = assert_raises ArgumentError do
+        tree_1.delete! node_10
+      end
+      assert_equal "node does not belong to this tree", error.message
+    end
+
     def test_delete_root_node_with_valid_children
       tree = RedBlackTree.new
       node_10 = IntegerNode.new 10
@@ -324,7 +356,7 @@ class TestRedBlackTree < Minitest::Test
       assert node_15.right.leaf?
       assert_equal node_5, tree.left_most_node
 
-      tree.delete! root_node_10
+      assert_equal root_node_10, (tree.delete! root_node_10)
       assert_equal 2, tree.size
       assert_equal 5, (root_node_5 = tree.root).data
       assert root_node_5.black?
@@ -388,7 +420,7 @@ class TestRedBlackTree < Minitest::Test
 
       assert node_5.children_are_valid?
 
-      tree.delete! node_5
+      assert_equal node_5, (tree.delete! node_5)
       assert_equal 4, tree.size
       assert_equal 10, (root_node_10 = tree.root).data
       assert root_node_10.black?
@@ -421,7 +453,7 @@ class TestRedBlackTree < Minitest::Test
       assert node_5.right.leaf?
       assert_equal node_5, tree.left_most_node
 
-      tree.delete! root_node_10
+      assert_equal root_node_10, (tree.delete! root_node_10)
       assert_equal 1, tree.size
       assert_equal 5, (root_node_5 = tree.root).data
       assert root_node_5.black?
@@ -450,7 +482,7 @@ class TestRedBlackTree < Minitest::Test
       assert node_10_2.right.leaf?
       assert_equal node_10_2, tree.left_most_node
 
-      tree.delete! root_node_10_1
+      assert_equal root_node_10_1, (tree.delete! root_node_10_1)
       assert_equal 1, tree.size
       assert_equal 10, (root_node_10 = tree.root).data
       assert root_node_10.black?
@@ -501,7 +533,7 @@ class TestRedBlackTree < Minitest::Test
       assert node_5.single_child_is_valid?
       assert node_15.black?
 
-      tree.delete! node_5
+      assert_equal node_5, (tree.delete! node_5)
       assert_equal 3, tree.size
       assert_equal 10, (root_node_10 = tree.root).data
       assert root_node_10.black?
@@ -527,7 +559,7 @@ class TestRedBlackTree < Minitest::Test
       assert root_node_10.right.leaf?
       assert_equal root_node_10, tree.left_most_node
 
-      tree.delete! root_node_10
+      assert_equal root_node_10, (tree.delete! root_node_10)
       assert_equal 0, tree.size
     end
 
@@ -551,7 +583,7 @@ class TestRedBlackTree < Minitest::Test
       assert node_5.right.leaf?
       assert_equal node_5, tree.left_most_node
 
-      tree.delete! node_5
+      assert_equal node_5, (tree.delete! node_5)
       assert_equal 1, tree.size
       assert_equal 10, (root_node_10 = tree.root).data
       assert root_node_10.black?
@@ -602,7 +634,7 @@ class TestRedBlackTree < Minitest::Test
       assert node_15.black?
       assert node_15.children_are_leaves?
 
-      tree.delete! node_15
+      assert_equal node_15, (tree.delete! node_15)
       assert_equal 3, tree.size
       assert_equal 5, (root_node_5 = tree.root).data
       assert root_node_5.black?
@@ -659,7 +691,7 @@ class TestRedBlackTree < Minitest::Test
       assert node_15.black?
       assert node_15.children_are_leaves?
 
-      tree.delete! node_15
+      assert_equal node_15, (tree.delete! node_15)
       assert_equal 3, tree.size
       assert_equal 9, (root_node_9 = tree.root).data
       assert root_node_9.black?
