@@ -1,5 +1,8 @@
 # RedBlackTree
 
+![Version](https://img.shields.io/gem/v/red-black-tree)
+![Build](https://img.shields.io/github/actions/workflow/status/joshuay03/red-black-tree/.github/workflows/tests.yml?branch=main)
+
 [Red-black tree](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree) data structure for Ruby.
 
 ## Installation
