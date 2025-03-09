@@ -31,11 +31,11 @@ PLATFORMS
 
 DEPENDENCIES
   benchmark-ips
-  debug (~> 1.9)
-  minitest (~> 5.16)
-  rake (~> 13.0)
+  debug
+  minitest
+  rake
   red-black-tree!
-  yard (~> 0.9)
+  yard
 
 BUNDLED WITH
    2.5.15
