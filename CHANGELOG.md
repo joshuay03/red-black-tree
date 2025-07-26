@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [0.1.8] - 2025-07-26
+
 - Refactor to slim down and de-duplicate some methods
 
 ## [0.1.7] - 2025-01-05
