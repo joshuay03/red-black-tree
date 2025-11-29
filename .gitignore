@@ -2,4 +2,6 @@
 /.yardoc
 /doc/
 /tmp/
+
+Gemfile.lock
 *.gem
