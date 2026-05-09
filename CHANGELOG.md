@@ -1,5 +1,6 @@
 ## [Unreleased]
 
+- Add `Enumerable` to `RedBlackTree`
 - Fix `RedBlackTree#clear!` not detaching nodes
 - Fix `LeafNodeComparable` being prepended to `LeafNode`
 

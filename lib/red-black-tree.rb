@@ -6,6 +6,7 @@ require_relative "red_black_tree/node/leaf_node"
 
 class RedBlackTree
   include Utils
+  include Enumerable
 
   # @return [Integer] the number of valid/non-leaf nodes
   attr_reader :size
@@ -196,6 +197,17 @@ class RedBlackTree
   # @return [true, false]
   def include? data
     !search(data).nil?
+  end
+
+  # Traverses the tree in in-order and yields each node.
+  # When called without a block, returns an {Enumerator}.
+  #
+  # @yield [RedBlackTree::Node] the block to be executed for each node
+  # @return [void, Enumerator]
+  def each &block
+    return enum_for(:each) unless block_given?
+
+    traverse_in_order(&block)
   end
 
   # Traverses the tree in pre-order and yields each node.

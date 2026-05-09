@@ -1158,6 +1158,50 @@ class TestRedBlackTree < Minitest::Test
     end
   end
 
+  class TestEnumerable < Minitest::Test
+    def test_each
+      tree = RedBlackTree.new
+      node_10 = IntegerNode.new 10
+      tree << node_10
+      node_5 = IntegerNode.new 5
+      tree << node_5
+      node_15 = IntegerNode.new 15
+      tree << node_15
+      result = []
+      tree.each { |node| result << node.data }
+      assert_equal [5, 10, 15], result
+    end
+
+    def test_each_without_block
+      tree = RedBlackTree.new
+      node_10 = IntegerNode.new 10
+      tree << node_10
+      assert_instance_of Enumerator, tree.each
+    end
+
+    def test_map
+      tree = RedBlackTree.new
+      node_10 = IntegerNode.new 10
+      tree << node_10
+      node_5 = IntegerNode.new 5
+      tree << node_5
+      node_15 = IntegerNode.new 15
+      tree << node_15
+      assert_equal [5, 10, 15], tree.map { |node| node.data }
+    end
+
+    def test_to_a
+      tree = RedBlackTree.new
+      node_10 = IntegerNode.new 10
+      tree << node_10
+      node_5 = IntegerNode.new 5
+      tree << node_5
+      node_15 = IntegerNode.new 15
+      tree << node_15
+      assert_equal [node_5, node_10, node_15], tree.to_a
+    end
+  end
+
   class TestIntegration < Minitest::Test
     Work = Struct.new :min_latency, keyword_init: true
 
