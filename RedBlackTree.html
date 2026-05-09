@@ -89,6 +89,11 @@
   
   
   
+  <dl>
+      <dt>Includes:</dt>
+      <dd>Enumerable</dd>
+  </dl>
+  
   
 
   
@@ -294,6 +299,28 @@
 
   
     <span class="summary_desc"><div class='inline'><p>Removes the given node from the tree.</p></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#each-instance_method" title="#each (instance method)">#<strong>each</strong> {|RedBlackTree::Node| ... } &#x21d2; void, Enumerator </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Traverses the tree in in-order and yields each node.</p></div></span>
   
 </li>
 
@@ -537,6 +564,7 @@
   
   
   
+  
   <div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
@@ -564,14 +592,14 @@
       <pre class="lines">
 
 
-21
 22
 23
 24
-25</pre>
+25
+26</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
   <span class='ivar'>@size</span> <span class='op'>=</span> <span class='int'>0</span>
@@ -634,12 +662,12 @@
       <pre class="lines">
 
 
-18
 19
-20</pre>
+20
+21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 18</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 19</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left_most_node'>left_most_node</span>
   <span class='ivar'>@left_most_node</span>
@@ -691,12 +719,12 @@
       <pre class="lines">
 
 
-11
 12
-13</pre>
+13
+14</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 12</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_size'>size</span>
   <span class='ivar'>@size</span>
@@ -789,7 +817,6 @@ and inserts the node with the appropriate parent and direction.</p>
       <pre class="lines">
 
 
-60
 61
 62
 63
@@ -803,10 +830,11 @@ and inserts the node with the appropriate parent and direction.</p>
 71
 72
 73
-74</pre>
+74
+75</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_node'>node</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cannot add leaf node</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_instance_of?'>instance_of?</span> <span class='const'>LeafNode</span>
@@ -865,12 +893,12 @@ and inserts the node with the appropriate parent and direction.</p>
       <pre class="lines">
 
 
-37
 38
-39</pre>
+39
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 37</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 38</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_any?'>any?</span>
   <span class='op'>!</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -920,18 +948,28 @@ and inserts the node with the appropriate parent and direction.</p>
       <pre class="lines">
 
 
-155
 156
 157
 158
 159
 160
-161</pre>
+161
+162
+163
+164
+165
+166
+167</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 155</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 156</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_clear!'>clear!</span>
+  <span class='id identifier rubyid_traverse_post_order'>traverse_post_order</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_node'>node</span><span class='op'>|</span>
+    <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_tree'>tree</span> <span class='op'>=</span> <span class='kw'>nil</span>
+    <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_colour'>colour</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_left'>left</span> <span class='op'>=</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_right'>right</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+
   <span class='ivar'>@root</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='ivar'>@size</span> <span class='op'>=</span> <span class='int'>0</span>
   <span class='ivar'>@left_most_node</span> <span class='op'>=</span> <span class='kw'>nil</span>
@@ -1014,7 +1052,6 @@ and inserts the node with the appropriate parent and direction.</p>
       <pre class="lines">
 
 
-124
 125
 126
 127
@@ -1040,10 +1077,11 @@ and inserts the node with the appropriate parent and direction.</p>
 147
 148
 149
-150</pre>
+150
+151</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 124</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 125</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete!'>delete!</span> <span class='id identifier rubyid_node'>node</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cannot delete leaf node</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_instance_of?'>instance_of?</span> <span class='const'>LeafNode</span>
@@ -1071,6 +1109,79 @@ and inserts the node with the appropriate parent and direction.</p>
   <span class='id identifier rubyid_update_left_most_node!'>update_left_most_node!</span>
 
   <span class='id identifier rubyid_original_node'>original_node</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="each-instance_method">
+  
+    #<strong>each</strong> {|RedBlackTree::Node| ... } &#x21d2; <tt>void</tt>, <tt>Enumerator</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Traverses the tree in in-order and yields each node.
+When called without a block, returns an Enumerator.</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="RedBlackTree/Node.html" title="RedBlackTree::Node (class)">RedBlackTree::Node</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the block to be executed for each node</p></div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>void</tt>, <tt>Enumerator</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+207
+208
+209
+210
+211</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 207</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_each'>each</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_enum_for'>enum_for</span><span class='lparen'>(</span><span class='symbol'>:each</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
+
+  <span class='id identifier rubyid_traverse_in_order'>traverse_in_order</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1114,12 +1225,12 @@ and inserts the node with the appropriate parent and direction.</p>
       <pre class="lines">
 
 
-30
 31
-32</pre>
+32
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 31</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_empty?'>empty?</span>
   <span class='ivar'>@size</span> <span class='op'>==</span> <span class='int'>0</span>
@@ -1166,12 +1277,12 @@ and inserts the node with the appropriate parent and direction.</p>
       <pre class="lines">
 
 
-192
-193
-194</pre>
+198
+199
+200</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 192</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 198</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_data'>data</span>
   <span class='op'>!</span><span class='id identifier rubyid_search'>search</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -1261,20 +1372,20 @@ and inserts the node with the appropriate parent and direction.</p>
       <pre class="lines">
 
 
-168
-169
-170
-171
-172
-173
 174
 175
 176
 177
-178</pre>
+178
+179
+180
+181
+182
+183
+184</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 168</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 174</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_search'>search</span> <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
@@ -1333,17 +1444,17 @@ and inserts the node with the appropriate parent and direction.</p>
       <pre class="lines">
 
 
-181
-182
-183
-184
-185</pre>
+187
+188
+189
+190
+191</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 181</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 187</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_select'>select</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>
-  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>block must be provided for select</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_block'>block</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>block must be provided for select</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
 
   <span class='id identifier rubyid__select_by_block'>_select_by_block</span> <span class='id identifier rubyid_block'>block</span><span class='comma'>,</span> <span class='ivar'>@root</span>
 <span class='kw'>end</span></pre>
@@ -1392,7 +1503,6 @@ and inserts the node with the appropriate parent and direction.</p>
       <pre class="lines">
 
 
-44
 45
 46
 47
@@ -1401,10 +1511,11 @@ and inserts the node with the appropriate parent and direction.</p>
 50
 51
 52
-53</pre>
+53
+54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_shift'>shift</span>
   <span class='kw'>return</span> <span class='kw'>unless</span> <span class='ivar'>@left_most_node</span>
@@ -1485,16 +1596,16 @@ and inserts the node with the appropriate parent and direction.</p>
       <pre class="lines">
 
 
-214
-215
-216
-217
-218
-219
-220</pre>
+231
+232
+233
+234
+235
+236
+237</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 214</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 231</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_traverse_in_order'>traverse_in_order</span> <span class='id identifier rubyid_node'>node</span> <span class='op'>=</span> <span class='ivar'>@root</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_leaf?'>leaf?</span>
@@ -1548,22 +1659,21 @@ and inserts the node with the appropriate parent and direction.</p>
       <pre class="lines">
 
 
-240
-241
-242
-243
-244
-245
-246
-247
-248
-249
-250
-251
-252</pre>
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 240</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 257</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_traverse_level_order'>traverse_level_order</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='ivar'>@root</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -1571,11 +1681,10 @@ and inserts the node with the appropriate parent and direction.</p>
   <span class='id identifier rubyid_queue'>queue</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='ivar'>@root</span><span class='rbracket'>]</span>
   <span class='kw'>until</span> <span class='id identifier rubyid_queue'>queue</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
     <span class='id identifier rubyid_node'>node</span> <span class='op'>=</span> <span class='id identifier rubyid_queue'>queue</span><span class='period'>.</span><span class='id identifier rubyid_shift'>shift</span>
-    <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_leaf?'>leaf?</span>
 
     <span class='id identifier rubyid_block'>block</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span> <span class='id identifier rubyid_node'>node</span>
-    <span class='id identifier rubyid_queue'>queue</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_left'>left</span>
-    <span class='id identifier rubyid_queue'>queue</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_right'>right</span>
+    <span class='id identifier rubyid_queue'>queue</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_left'>left</span> <span class='kw'>unless</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_left'>left</span><span class='period'>.</span><span class='id identifier rubyid_leaf?'>leaf?</span>
+    <span class='id identifier rubyid_queue'>queue</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_right'>right</span> <span class='kw'>unless</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_right'>right</span><span class='period'>.</span><span class='id identifier rubyid_leaf?'>leaf?</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1643,16 +1752,16 @@ and inserts the node with the appropriate parent and direction.</p>
       <pre class="lines">
 
 
-228
-229
-230
-231
-232
-233
-234</pre>
+245
+246
+247
+248
+249
+250
+251</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 228</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 245</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_traverse_post_order'>traverse_post_order</span> <span class='id identifier rubyid_node'>node</span> <span class='op'>=</span> <span class='ivar'>@root</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_leaf?'>leaf?</span>
@@ -1726,16 +1835,16 @@ and inserts the node with the appropriate parent and direction.</p>
       <pre class="lines">
 
 
-201
-202
-203
-204
-205
-206
-207</pre>
+218
+219
+220
+221
+222
+223
+224</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 201</span>
+      <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 218</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_traverse_pre_order'>traverse_pre_order</span> <span class='id identifier rubyid_node'>node</span> <span class='op'>=</span> <span class='ivar'>@root</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_leaf?'>leaf?</span>
@@ -1754,7 +1863,7 @@ and inserts the node with the appropriate parent and direction.</p>
 </div>
 
       <div id="footer">
-  Generated on Sat May  9 11:09:54 2026 by
+  Generated on Sat May  9 23:30:37 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.43 (ruby-4.1.0).
 </div>
