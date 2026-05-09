@@ -9,7 +9,7 @@ class RedBlackTree
   class Node
     class << self
       def inherited subclass
-        subclass.prepend LeafNodeComparable
+        subclass.prepend LeafNodeComparable unless subclass == ::RedBlackTree::LeafNode
       end
     end
 

@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+- Fix `LeafNodeComparable` being prepended to `LeafNode`
+
 ## [0.1.8] - 2025-07-26
 
 - Refactor to slim down and de-duplicate some methods

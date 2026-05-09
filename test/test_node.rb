@@ -26,6 +26,12 @@ class TestNode < Minitest::Test
     assert_nil node.right
   end
 
+  def test_leaf_node_comparison_with_leaf_node
+    leaf_node_1 = RedBlackTree::LeafNode.new
+    leaf_node_2 = RedBlackTree::LeafNode.new
+    assert_equal 0, leaf_node_1 <=> leaf_node_2
+  end
+
   def test_node_data_delegation
     node = RedBlackTree::Node.new "root"
     assert node.respond_to? :length
