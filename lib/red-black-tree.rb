@@ -260,11 +260,9 @@ class RedBlackTree
     queue = [@root]
     until queue.empty?
       node = queue.shift
-      next if node.nil? || node.leaf?
-
       block.call node
-      queue << node.left
-      queue << node.right
+      queue << node.left unless node.left.leaf?
+      queue << node.right unless node.right.leaf?
     end
   end
 
