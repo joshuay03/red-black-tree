@@ -3,6 +3,8 @@
 require "test_helper"
 
 class TestRedBlackTree < Minitest::Test
+  parallelize_me!
+
   def test_that_it_has_a_version_number
     refute_nil RedBlackTree::VERSION
   end
@@ -15,6 +17,8 @@ class TestRedBlackTree < Minitest::Test
   end
 
   class TestInsert < Minitest::Test
+    parallelize_me!
+
     def test_new_tree_insert
       tree = RedBlackTree.new
       node = StringNode.new "root"
@@ -158,6 +162,8 @@ class TestRedBlackTree < Minitest::Test
   end
 
   class TestAdd < Minitest::Test
+    parallelize_me!
+
     def test_new_tree_add
       tree = RedBlackTree.new
       node_10 = IntegerNode.new 10
@@ -278,6 +284,8 @@ class TestRedBlackTree < Minitest::Test
   end
 
   class TestDelete < Minitest::Test
+    parallelize_me!
+
     def test_delete_leaf
       tree = RedBlackTree.new
       node_10 = IntegerNode.new 10
@@ -708,6 +716,8 @@ class TestRedBlackTree < Minitest::Test
   end
 
   class TestClear < Minitest::Test
+    parallelize_me!
+
     def test_new_tree_clear
       tree = RedBlackTree.new
       assert_equal 0, tree.size
@@ -793,6 +803,8 @@ class TestRedBlackTree < Minitest::Test
   end
 
   class TestSearch < Minitest::Test
+    parallelize_me!
+
     def test_search_without_data_and_without_block
       tree = RedBlackTree.new
       error = assert_raises ArgumentError do
@@ -893,6 +905,8 @@ class TestRedBlackTree < Minitest::Test
   end
 
   class TestSelect < Minitest::Test
+    parallelize_me!
+
     def test_select_without_block
       tree = RedBlackTree.new
       error = assert_raises ArgumentError do
@@ -943,6 +957,8 @@ class TestRedBlackTree < Minitest::Test
   end
 
   class TestInclude < Minitest::Test
+    parallelize_me!
+
     def test_new_tree_include
       tree = RedBlackTree.new
       refute tree.include? 10
@@ -975,6 +991,8 @@ class TestRedBlackTree < Minitest::Test
   end
 
   class TestTraverseInPreOrder < Minitest::Test
+    parallelize_me!
+
     def test_order
       tree = RedBlackTree.new
       node_10 = IntegerNode.new 10
@@ -999,6 +1017,8 @@ class TestRedBlackTree < Minitest::Test
   end
 
   class TestTraverseInInOrder < Minitest::Test
+    parallelize_me!
+
     def test_order
       tree = RedBlackTree.new
       node_10 = IntegerNode.new 10
@@ -1023,6 +1043,8 @@ class TestRedBlackTree < Minitest::Test
   end
 
   class TestTraverseInPostOrder < Minitest::Test
+    parallelize_me!
+
     def test_order
       tree = RedBlackTree.new
       node_10 = IntegerNode.new 10
@@ -1047,6 +1069,8 @@ class TestRedBlackTree < Minitest::Test
   end
 
   class TestTraverseInLevelOrder < Minitest::Test
+    parallelize_me!
+
     def test_order
       tree = RedBlackTree.new
       node_10 = IntegerNode.new 10
@@ -1071,6 +1095,8 @@ class TestRedBlackTree < Minitest::Test
   end
 
   class TestShift < Minitest::Test
+    parallelize_me!
+
     def test_new_tree_shift
       tree = RedBlackTree.new
       assert_equal 0, tree.size
@@ -1127,6 +1153,8 @@ class TestRedBlackTree < Minitest::Test
   end
 
   class TestEmpty < Minitest::Test
+    parallelize_me!
+
     def test_new_tree
       tree = RedBlackTree.new
       assert_equal 0, tree.size
@@ -1143,6 +1171,8 @@ class TestRedBlackTree < Minitest::Test
   end
 
   class TestAny < Minitest::Test
+    parallelize_me!
+
     def test_new_tree
       tree = RedBlackTree.new
       assert_equal 0, tree.size
@@ -1159,6 +1189,8 @@ class TestRedBlackTree < Minitest::Test
   end
 
   class TestEnumerable < Minitest::Test
+    parallelize_me!
+
     def test_each
       tree = RedBlackTree.new
       node_10 = IntegerNode.new 10
@@ -1203,6 +1235,8 @@ class TestRedBlackTree < Minitest::Test
   end
 
   class TestIntegration < Minitest::Test
+    parallelize_me!
+
     Work = Struct.new :min_latency, keyword_init: true
 
     class WorkNode < RedBlackTree::Node

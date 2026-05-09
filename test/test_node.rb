@@ -3,6 +3,8 @@
 require "test_helper"
 
 class TestNode < Minitest::Test
+  parallelize_me!
+
   def test_new_node
     node = RedBlackTree::Node.new "root"
     assert_nil node.colour
