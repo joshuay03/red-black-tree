@@ -1669,8 +1669,7 @@ When called without a block, returns an Enumerator.</p>
 264
 265
 266
-267
-268</pre>
+267</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/red-black-tree.rb', line 257</span>
@@ -1681,7 +1680,6 @@ When called without a block, returns an Enumerator.</p>
   <span class='id identifier rubyid_queue'>queue</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='ivar'>@root</span><span class='rbracket'>]</span>
   <span class='kw'>until</span> <span class='id identifier rubyid_queue'>queue</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
     <span class='id identifier rubyid_node'>node</span> <span class='op'>=</span> <span class='id identifier rubyid_queue'>queue</span><span class='period'>.</span><span class='id identifier rubyid_shift'>shift</span>
-
     <span class='id identifier rubyid_block'>block</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span> <span class='id identifier rubyid_node'>node</span>
     <span class='id identifier rubyid_queue'>queue</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_left'>left</span> <span class='kw'>unless</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_left'>left</span><span class='period'>.</span><span class='id identifier rubyid_leaf?'>leaf?</span>
     <span class='id identifier rubyid_queue'>queue</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_right'>right</span> <span class='kw'>unless</span> <span class='id identifier rubyid_node'>node</span><span class='period'>.</span><span class='id identifier rubyid_right'>right</span><span class='period'>.</span><span class='id identifier rubyid_leaf?'>leaf?</span>
@@ -1863,7 +1861,7 @@ When called without a block, returns an Enumerator.</p>
 </div>
 
       <div id="footer">
-  Generated on Sat May  9 23:34:04 2026 by
+  Generated on Sat May  9 23:36:29 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.43 (ruby-4.1.0).
 </div>
