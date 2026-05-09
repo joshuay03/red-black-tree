@@ -153,6 +153,11 @@ class RedBlackTree
   #
   # @return [RedBlackTree] self
   def clear!
+    traverse_post_order do |node|
+      node.tree = nil
+      node.colour = node.parent = node.left = node.right = nil
+    end
+
     @root = nil
     @size = 0
     @left_most_node = nil

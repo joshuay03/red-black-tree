@@ -1,5 +1,6 @@
 ## [Unreleased]
 
+- Fix `RedBlackTree#clear!` not detaching nodes
 - Fix `LeafNodeComparable` being prepended to `LeafNode`
 
 ## [0.1.8] - 2025-07-26

@@ -759,6 +759,37 @@ class TestRedBlackTree < Minitest::Test
       assert_nil tree.root
       assert_nil tree.left_most_node
     end
+
+    def test_cleared_nodes_can_be_reinserted
+      tree = RedBlackTree.new
+      node_10 = IntegerNode.new 10
+      tree << node_10
+      assert_equal 1, tree.size
+      assert_equal node_10, tree.root
+      assert_equal node_10, tree.left_most_node
+
+      node_5 = IntegerNode.new 5
+      tree << node_5
+      assert_equal 2, tree.size
+      assert_equal node_10, tree.root
+      assert_equal node_5, tree.left_most_node
+
+      tree.clear!
+      assert_equal 0, tree.size
+      assert_nil tree.root
+      assert_nil tree.left_most_node
+
+      tree_2 = RedBlackTree.new
+      tree_2 << node_10
+      assert_equal 1, tree_2.size
+      assert_equal node_10, tree_2.root
+      assert_equal node_10, tree_2.left_most_node
+
+      tree_2 << node_5
+      assert_equal 2, tree_2.size
+      assert_equal node_5, node_10.left
+      assert_equal node_5, tree_2.left_most_node
+    end
   end
 
   class TestSearch < Minitest::Test
