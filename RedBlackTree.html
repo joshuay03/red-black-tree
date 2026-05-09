@@ -6,13 +6,13 @@
 <title>
   Class: RedBlackTree
   
-    &mdash; Documentation by YARD 0.9.38
+    &mdash; Documentation by YARD 0.9.43
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <link rel="stylesheet" href="css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" />
+  <link rel="stylesheet" href="css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "RedBlackTree";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -94,8 +96,9 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/red-black-tree.rb<span class="defines">,<br />
-  lib/red_black_tree/node.rb,<br /> lib/red_black_tree/utils.rb,<br /> lib/red_black_tree/version.rb,<br /> lib/red_black_tree/node/leaf_node.rb,<br /> lib/red_black_tree/node/data_delegation.rb,<br /> lib/red_black_tree/node/leaf_node_comparable.rb,<br /> lib/red_black_tree/node/left_right_element_referencers.rb</span>
+    <dd>lib/red-black-tree.rb<span class="defines">,<br>
+  lib/red_black_tree/node.rb,<br> lib/red_black_tree/utils.rb,<br> lib/red_black_tree/version.rb,<br> lib/red_black_tree/node/leaf_node.rb,<br> lib/red_black_tree/node/data_delegation.rb,<br> lib/red_black_tree/node/leaf_node_comparable.rb,<br> lib/red_black_tree/node/left_right_element_referencers.rb</span>
+
 </dd>
   </dl>
   
@@ -160,9 +163,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>The left most node.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>The left most node.</p></div></span>
   
 </li>
 
@@ -189,9 +190,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>The number of valid/non-leaf nodes.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>The number of valid/non-leaf nodes.</p></div></span>
   
 </li>
 
@@ -228,9 +227,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Traverses the tree, comparing existing nodes to the node to be added, and inserts the node with the appropriate parent and direction.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Traverses the tree, comparing existing nodes to the node to be added, and inserts the node with the appropriate parent and direction.</p></div></span>
   
 </li>
 
@@ -252,9 +249,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns true if there are any valid/non-leaf nodes, and false if there are none.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns true if there are any valid/non-leaf nodes, and false if there are none.</p></div></span>
   
 </li>
 
@@ -276,9 +271,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Removes all nodes from the tree.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Removes all nodes from the tree.</p></div></span>
   
 </li>
 
@@ -300,9 +293,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Removes the given node from the tree.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Removes the given node from the tree.</p></div></span>
   
 </li>
 
@@ -324,9 +315,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns true if there are no valid/non-leaf nodes, and false if there are.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns true if there are no valid/non-leaf nodes, and false if there are.</p></div></span>
   
 </li>
 
@@ -348,9 +337,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Returns true if there is a node which matches the given data/value, and false if there is not.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Returns true if there is a node which matches the given data/value, and false if there is not.</p></div></span>
   
 </li>
 
@@ -374,9 +361,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>A new instance of RedBlackTree.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>A new instance of RedBlackTree.</p></div></span>
   
 </li>
 
@@ -400,9 +385,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Searches for a node which matches the given data/value.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Searches for a node which matches the given data/value.</p></div></span>
   
 </li>
 
@@ -448,9 +431,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Removes the left most node (the node with the lowest data value) from the tree.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Removes the left most node (the node with the lowest data value) from the tree.</p></div></span>
   
 </li>
 
@@ -474,9 +455,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Traverses the tree in in-order and yields each node.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Traverses the tree in in-order and yields each node.</p></div></span>
   
 </li>
 
@@ -498,9 +477,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Traverses the tree in level-order and yields each node.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Traverses the tree in level-order and yields each node.</p></div></span>
   
 </li>
 
@@ -522,9 +499,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Traverses the tree in post-order and yields each node.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Traverses the tree in post-order and yields each node.</p></div></span>
   
 </li>
 
@@ -546,17 +521,17 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Traverses the tree in pre-order and yields each node.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Traverses the tree in pre-order and yields each node.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
+  
   
   
   
@@ -576,9 +551,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns a new instance of RedBlackTree.</p>
-
+    <p>Returns a new instance of RedBlackTree.</p>
 
   </div>
 </div>
@@ -632,9 +605,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the left most node.</p>
-
+    <p>Returns the left most node.</p>
 
   </div>
 </div>
@@ -651,9 +622,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the left most node</p>
-</div>
+        <div class='inline'><p>the left most node</p></div>
       
     </li>
   
@@ -693,9 +662,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns the number of valid/non-leaf nodes.</p>
-
+    <p>Returns the number of valid/non-leaf nodes.</p>
 
   </div>
 </div>
@@ -712,9 +679,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the number of valid/non-leaf nodes</p>
-</div>
+        <div class='inline'><p>the number of valid/non-leaf nodes</p></div>
       
     </li>
   
@@ -763,9 +728,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Traverses the tree, comparing existing nodes to the node to be added, and inserts the node with the appropriate parent and direction.</p>
-
+    <p>Traverses the tree, comparing existing nodes to the node to be added,
+and inserts the node with the appropriate parent and direction.</p>
 
   </div>
 </div>
@@ -783,9 +747,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the node to be added</p>
-</div>
+        <div class='inline'><p>the node to be added</p></div>
       
     </li>
   
@@ -802,9 +764,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>self</p>
-</div>
+        <div class='inline'><p>self</p></div>
       
     </li>
   
@@ -879,9 +839,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns true if there are any valid/non-leaf nodes, and false if there are none.</p>
-
+    <p>Returns true if there are any valid/non-leaf nodes, and false if there are none.</p>
 
   </div>
 </div>
@@ -933,9 +891,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Removes all nodes from the tree.</p>
-
+    <p>Removes all nodes from the tree.</p>
 
   </div>
 </div>
@@ -952,9 +908,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>self</p>
-</div>
+        <div class='inline'><p>self</p></div>
       
     </li>
   
@@ -1000,9 +954,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Removes the given node from the tree.</p>
-
+    <p>Removes the given node from the tree.</p>
 
   </div>
 </div>
@@ -1020,9 +972,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the node to be removed</p>
-</div>
+        <div class='inline'><p>the node to be removed</p></div>
       
     </li>
   
@@ -1039,9 +989,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the removed node</p>
-</div>
+        <div class='inline'><p>the removed node</p></div>
       
     </li>
   
@@ -1140,9 +1088,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns true if there are no valid/non-leaf nodes, and false if there are.</p>
-
+    <p>Returns true if there are no valid/non-leaf nodes, and false if there are.</p>
 
   </div>
 </div>
@@ -1194,9 +1140,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns true if there is a node which matches the given data/value, and false if there is not.</p>
-
+    <p>Returns true if there is a node which matches the given data/value, and false if there is not.</p>
 
   </div>
 </div>
@@ -1252,9 +1196,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Searches for a node which matches the given data/value.</p>
-
+    <p>Searches for a node which matches the given data/value.</p>
 
   </div>
 </div>
@@ -1274,9 +1216,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the data to search for</p>
-</div>
+        <div class='inline'><p>the data to search for</p></div>
       
     </li>
   
@@ -1293,9 +1233,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the block to be used for comparison</p>
-</div>
+        <div class='inline'><p>the block to be used for comparison</p></div>
       
     </li>
   
@@ -1311,9 +1249,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the matching node</p>
-</div>
+        <div class='inline'><p>the matching node</p></div>
       
     </li>
   
@@ -1427,9 +1363,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Removes the left most node (the node with the lowest data value) from the tree.</p>
-
+    <p>Removes the left most node (the node with the lowest data value) from the tree.</p>
 
   </div>
 </div>
@@ -1446,9 +1380,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the removed node</p>
-</div>
+        <div class='inline'><p>the removed node</p></div>
       
     </li>
   
@@ -1504,9 +1436,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Traverses the tree in in-order and yields each node.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Traverses the tree in in-order and yields each node.</p>
 
   </div>
 </div>
@@ -1526,9 +1456,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the node to start the traversal from</p>
-</div>
+        <div class='inline'><p>the node to start the traversal from</p></div>
       
     </li>
   
@@ -1545,9 +1473,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the block to be executed for each node</p>
-</div>
+        <div class='inline'><p>the block to be executed for each node</p></div>
       
     </li>
   
@@ -1593,9 +1519,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Traverses the tree in level-order and yields each node.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Traverses the tree in level-order and yields each node.</p>
 
   </div>
 </div>
@@ -1612,9 +1536,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the block to be executed for each node</p>
-</div>
+        <div class='inline'><p>the block to be executed for each node</p></div>
       
     </li>
   
@@ -1672,9 +1594,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Traverses the tree in post-order and yields each node.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Traverses the tree in post-order and yields each node.</p>
 
   </div>
 </div>
@@ -1694,9 +1614,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the node to start the traversal from</p>
-</div>
+        <div class='inline'><p>the node to start the traversal from</p></div>
       
     </li>
   
@@ -1713,9 +1631,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the block to be executed for each node</p>
-</div>
+        <div class='inline'><p>the block to be executed for each node</p></div>
       
     </li>
   
@@ -1761,9 +1677,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p class="note returns_void">This method returns an undefined value.</p>
-<p>Traverses the tree in pre-order and yields each node.</p>
-
+    <p class="note returns_void">This method returns an undefined value.</p><p>Traverses the tree in pre-order and yields each node.</p>
 
   </div>
 </div>
@@ -1783,9 +1697,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the node to start the traversal from</p>
-</div>
+        <div class='inline'><p>the node to start the traversal from</p></div>
       
     </li>
   
@@ -1802,9 +1714,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the block to be executed for each node</p>
-</div>
+        <div class='inline'><p>the block to be executed for each node</p></div>
       
     </li>
   
@@ -1844,9 +1754,9 @@
 </div>
 
       <div id="footer">
-  Generated on Sat Jan 17 05:31:02 2026 by
+  Generated on Sat May  9 11:09:54 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-4.1.0).
+  0.9.43 (ruby-4.1.0).
 </div>
 
     </div>
