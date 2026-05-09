@@ -185,7 +185,7 @@ class RedBlackTree
   alias_method :find, :search
 
   def select &block
-    raise ArgumentError, "block must be provided for select" unless block
+    raise ArgumentError, "block must be provided for select" unless block_given?
 
     _select_by_block block, @root
   end
