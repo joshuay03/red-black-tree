@@ -344,13 +344,13 @@ class RedBlackTree
   def delete_node_with_two_children! node
     is_root = is_root? node
 
-    successor = node.left
-    successor = successor.right until successor.right.leaf?
-    node.swap_colour_with! successor
-    node.swap_position_with! successor
+    predecessor = node.left
+    predecessor = predecessor.right until predecessor.right.leaf?
+    node.swap_colour_with! predecessor
+    node.swap_position_with! predecessor
     node.swap_position_with! LeafNode.new
 
-    @root = successor if is_root
+    @root = predecessor if is_root
   end
 
   def delete_node_with_one_child! node
