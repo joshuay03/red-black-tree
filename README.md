@@ -86,20 +86,20 @@ Benchmark.ips do |x|
   x.compare!
 end
 
-#=> ruby 3.4.1 (2024-12-25 revision 48d4efcb85) +YJIT +PRISM [arm64-darwin24]
+#=> ruby 4.0.3 (2026-04-21 revision 85ddef263a) +YJIT +PRISM [arm64-darwin23]
 #=> Warming up --------------------------------------
 #=>         RedBlackTree     1.000 i/100ms
 #=> Array (gradual sort)     1.000 i/100ms
-#=>  Array (single sort)   100.000 i/100ms
+#=>  Array (single sort)    81.000 i/100ms
 #=> Calculating -------------------------------------
-#=>         RedBlackTree     16.684 (± 6.0%) i/s   (59.94 ms/i) -     84.000 in   5.053688s
-#=> Array (gradual sort)      0.270 (± 0.0%) i/s     (3.71 s/i) -      2.000 in   7.418650s
-#=>  Array (single sort)     1.006k (± 2.4%) i/s  (994.28 μs/i) -      5.100k in   5.073834s
-#=>
+#=>         RedBlackTree     12.170 (± 8.2%) i/s   (82.17 ms/i) -     61.000 in   5.023274s
+#=> Array (gradual sort)      0.208 (± 0.0%) i/s     (4.82 s/i) -      2.000 in   9.632733s
+#=>  Array (single sort)    815.762 (± 1.2%) i/s    (1.23 ms/i) -      4.131k in   5.064788s
+#=> 
 #=> Comparison:
-#=>  Array (single sort):     1005.8 i/s
-#=>         RedBlackTree:       16.7 i/s - 60.28x  slower
-#=> Array (gradual sort):        0.3 i/s - 3729.44x  slower
+#=>  Array (single sort):      815.8 i/s
+#=>         RedBlackTree:       12.2 i/s - 67.03x  slower
+#=> Array (gradual sort):        0.2 i/s - 3928.64x  slower
 ```
 
 ### Sort and search 10,000 elements
@@ -122,7 +122,7 @@ Benchmark.ips do |x|
   x.report("RedBlackTree#search") do
     tree = RedBlackTree.new
     sample_data.each { |work| tree << WorkNode.new(work); }
-    raise unless tree.search search_sample
+    raise unless tree.search { |node| node.data == search_sample }
   end
 
   # 1:1 comparison
@@ -156,34 +156,34 @@ Benchmark.ips do |x|
   x.compare!
 end
 
-#=> ruby 3.4.1 (2024-12-25 revision 48d4efcb85) +YJIT +PRISM [arm64-darwin24]
+#=> ruby 4.0.3 (2026-04-21 revision 85ddef263a) +YJIT +PRISM [arm64-darwin23]
 #=> Warming up --------------------------------------
 #=>  RedBlackTree#search     3.000 i/100ms
 #=> Array#find (gradual sort)
 #=>                          1.000 i/100ms
 #=> Array#find (single sort)
-#=>                         95.000 i/100ms
+#=>                         79.000 i/100ms
 #=> Array#bsearch (gradual sort)
 #=>                          1.000 i/100ms
 #=> Array#bsearch (single sort)
-#=>                        108.000 i/100ms
+#=>                         87.000 i/100ms
 #=> Calculating -------------------------------------
-#=>  RedBlackTree#search     42.850 (± 4.7%) i/s   (23.34 ms/i) -    216.000 in   5.049896s
+#=>  RedBlackTree#search     32.188 (± 6.2%) i/s   (31.07 ms/i) -    162.000 in   5.051229s
 #=> Array#find (gradual sort)
-#=>                           0.274 (± 0.0%) i/s     (3.65 s/i) -      2.000 in   7.302412s
+#=>                           0.207 (± 0.0%) i/s     (4.83 s/i) -      2.000 in   9.651532s
 #=> Array#find (single sort)
-#=>                         935.492 (± 2.7%) i/s    (1.07 ms/i) -      4.750k in   5.081415s
+#=>                         809.310 (± 3.8%) i/s    (1.24 ms/i) -      4.108k in   5.084020s
 #=> Array#bsearch (gradual sort)
-#=>                           0.275 (± 0.0%) i/s     (3.63 s/i) -      2.000 in   7.269027s
+#=>                           0.205 (± 0.0%) i/s     (4.88 s/i) -      2.000 in   9.753754s
 #=> Array#bsearch (single sort)
-#=>                          1.104k (± 2.0%) i/s  (905.52 μs/i) -      5.616k in   5.087395s
-#=>
+#=>                         857.497 (± 1.0%) i/s    (1.17 ms/i) -      4.350k in   5.073414s
+#=> 
 #=> Comparison:
-#=>  Array#bsearch (single sort):     1104.3 i/s
-#=>     Array#find (single sort):      935.5 i/s - 1.18x  slower
-#=>          RedBlackTree#search:       42.9 i/s - 25.77x  slower
-#=> Array#bsearch (gradual sort):        0.3 i/s - 4013.67x  slower
-#=>    Array#find (gradual sort):        0.3 i/s - 4031.85x  slower
+#=> Array#bsearch (single sort):      857.5 i/s
+#=> Array#find (single sort):      809.3 i/s - 1.06x  slower
+#=>  RedBlackTree#search:       32.2 i/s - 26.64x  slower
+#=> Array#find (gradual sort):        0.2 i/s - 4138.00x  slower
+#=> Array#bsearch (gradual sort):        0.2 i/s - 4181.79x  slower
 ```
 
 ## WIP Features
