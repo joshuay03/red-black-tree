@@ -135,7 +135,9 @@ class RedBlackTree
 
     if node.children_are_valid?
       delete_node_with_two_children! node
-    elsif node.single_child_is_valid?
+    end
+
+    if node.single_child_is_valid?
       delete_node_with_one_child! node
     elsif node.children_are_leaves?
       delete_leaf_node! node, original_node
@@ -348,7 +350,6 @@ class RedBlackTree
     predecessor = predecessor.right until predecessor.right.leaf?
     node.swap_colour_with! predecessor
     node.swap_position_with! predecessor
-    node.swap_position_with! LeafNode.new
 
     @root = predecessor if is_root
   end

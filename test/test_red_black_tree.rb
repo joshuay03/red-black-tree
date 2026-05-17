@@ -441,6 +441,88 @@ class TestRedBlackTree < Minitest::Test
       assert_equal node_1, tree.left_most_node
     end
 
+    def test_delete_root_node_with_valid_children_and_predecessor_with_valid_child
+      tree = RedBlackTree.new
+      node_10 = IntegerNode.new 10
+      tree << node_10
+      assert_equal 1, tree.size
+      assert_equal node_10, (root_node_10 = tree.root)
+      assert root_node_10.black?
+      assert root_node_10.left.leaf?
+      assert root_node_10.right.leaf?
+      assert_equal root_node_10, tree.left_most_node
+
+      node_5 = IntegerNode.new 5
+      tree << node_5
+      assert_equal 2, tree.size
+      assert_equal node_5, root_node_10.left
+      assert node_5.red?
+      assert node_5.left.leaf?
+      assert node_5.right.leaf?
+      assert_equal node_5, tree.left_most_node
+
+      node_15 = IntegerNode.new 15
+      tree << node_15
+      assert_equal 3, tree.size
+      assert_equal node_15, root_node_10.right
+      assert node_15.red?
+      assert node_15.left.leaf?
+      assert node_15.right.leaf?
+      assert_equal node_5, tree.left_most_node
+
+      node_3 = IntegerNode.new 3
+      tree << node_3
+      assert_equal 4, tree.size
+      assert_equal node_3, node_5.left
+      assert node_3.red?
+      assert node_3.left.leaf?
+      assert node_3.right.leaf?
+      assert_equal node_3, tree.left_most_node
+
+      assert node_5.black?
+      assert node_15.black?
+
+      node_7 = IntegerNode.new 7
+      tree << node_7
+      assert_equal 5, tree.size
+      assert_equal node_7, node_5.right
+      assert node_7.red?
+      assert node_7.left.leaf?
+      assert node_7.right.leaf?
+      assert_equal node_3, tree.left_most_node
+
+      node_6 = IntegerNode.new 6
+      tree << node_6
+      assert_equal 6, tree.size
+      assert_equal node_6, node_7.left
+      assert node_6.red?
+      assert node_6.left.leaf?
+      assert node_6.right.leaf?
+      assert_equal node_3, tree.left_most_node
+
+      assert root_node_10.children_are_valid?
+
+      assert_equal root_node_10, (tree.delete! root_node_10)
+      assert_equal 5, tree.size
+      assert_equal 7, (root_node_7 = tree.root).data
+      assert root_node_7.black?
+      assert_equal 5, (node_5 = root_node_7.left).data
+      assert node_5.red?
+      assert_equal 3, (node_3 = node_5.left).data
+      assert node_3.black?
+      assert node_3.left.leaf?
+      assert node_3.right.leaf?
+      assert_equal 6, (node_6 = node_5.right).data
+      assert node_6.black?
+      assert node_6.left.leaf?
+      assert node_6.right.leaf?
+      assert_equal 15, (node_15 = root_node_7.right).data
+      assert node_15.black?
+      assert node_15.left.leaf?
+      assert node_15.right.leaf?
+      assert_equal node_3, tree.left_most_node
+    end
+
     def test_delete_root_node_with_single_valid_child
       tree = RedBlackTree.new
       node_10 = IntegerNode.new 10
