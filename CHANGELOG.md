@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [0.1.10] - 2026-05-17
+
 - Fix `RedBlackTree#delete!` orphaning predecessor's child when deleting a node with two valid children
 
 ## [0.1.9] - 2026-05-10
